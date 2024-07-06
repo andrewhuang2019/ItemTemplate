@@ -2,9 +2,47 @@
   "_format": "hh-sol-cache-2",
   "files": {
     "C:\\Users\\andre\\OneDrive\\Desktop\\Coding\\Personal Projects\\ItemTemplate\\ItemTemplate\\contracts\\Box.sol": {
-      "lastModificationDate": 1720212893204,
-      "contentHash": "85cd753da8706130f4066a7f2a665b8b",
+      "lastModificationDate": 1720279771993,
+      "contentHash": "02e91ca4195b8a8010d5b307ada55353",
       "sourceName": "contracts/Box.sol",
+      "solcConfig": {
+        "version": "0.8.24",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "@openzeppelin/contracts/access/Ownable.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "Box"
+      ]
+    },
+    "C:\\Users\\andre\\OneDrive\\Desktop\\Coding\\Personal Projects\\ItemTemplate\\ItemTemplate\\contracts\\access-control\\Auth.sol": {
+      "lastModificationDate": 1720279772022,
+      "contentHash": "9fc2c077ad2832c855ae3411cbbc95ab",
+      "sourceName": "contracts/access-control/Auth.sol",
       "solcConfig": {
         "version": "0.8.24",
         "settings": {
@@ -34,7 +72,81 @@
         "^0.8.0"
       ],
       "artifacts": [
-        "Box"
+        "Auth"
+      ]
+    },
+    "C:\\Users\\andre\\OneDrive\\Desktop\\Coding\\Personal Projects\\ItemTemplate\\ItemTemplate\\node_modules\\@openzeppelin\\contracts\\access\\Ownable.sol": {
+      "lastModificationDate": 1720279246057,
+      "contentHash": "d3c790edc9ccf808a17c5a6cd13614fd",
+      "sourceName": "@openzeppelin/contracts/access/Ownable.sol",
+      "solcConfig": {
+        "version": "0.8.24",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "../utils/Context.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.20"
+      ],
+      "artifacts": [
+        "Ownable"
+      ]
+    },
+    "C:\\Users\\andre\\OneDrive\\Desktop\\Coding\\Personal Projects\\ItemTemplate\\ItemTemplate\\node_modules\\@openzeppelin\\contracts\\utils\\Context.sol": {
+      "lastModificationDate": 1720279246361,
+      "contentHash": "67bfbc07588eb8683b3fd8f6f909563e",
+      "sourceName": "@openzeppelin/contracts/utils/Context.sol",
+      "solcConfig": {
+        "version": "0.8.24",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.20"
+      ],
+      "artifacts": [
+        "Context"
       ]
     }
   }
