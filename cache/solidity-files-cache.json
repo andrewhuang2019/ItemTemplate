@@ -2,7 +2,7 @@
   "_format": "hh-sol-cache-2",
   "files": {
     "C:\\Users\\andre\\OneDrive\\Desktop\\Coding\\Personal Projects\\ItemTemplate\\ItemTemplate\\contracts\\Box.sol": {
-      "lastModificationDate": 1720279771993,
+      "lastModificationDate": 1720370137788,
       "contentHash": "02e91ca4195b8a8010d5b307ada55353",
       "sourceName": "contracts/Box.sol",
       "solcConfig": {
@@ -20,7 +20,8 @@
                 "evm.bytecode",
                 "evm.deployedBytecode",
                 "evm.methodIdentifiers",
-                "metadata"
+                "metadata",
+                "storageLayout"
               ],
               "": [
                 "ast"
@@ -40,7 +41,7 @@
       ]
     },
     "C:\\Users\\andre\\OneDrive\\Desktop\\Coding\\Personal Projects\\ItemTemplate\\ItemTemplate\\contracts\\access-control\\Auth.sol": {
-      "lastModificationDate": 1720279772022,
+      "lastModificationDate": 1720370137793,
       "contentHash": "9fc2c077ad2832c855ae3411cbbc95ab",
       "sourceName": "contracts/access-control/Auth.sol",
       "solcConfig": {
@@ -58,7 +59,8 @@
                 "evm.bytecode",
                 "evm.deployedBytecode",
                 "evm.methodIdentifiers",
-                "metadata"
+                "metadata",
+                "storageLayout"
               ],
               "": [
                 "ast"
@@ -76,7 +78,7 @@
       ]
     },
     "C:\\Users\\andre\\OneDrive\\Desktop\\Coding\\Personal Projects\\ItemTemplate\\ItemTemplate\\node_modules\\@openzeppelin\\contracts\\access\\Ownable.sol": {
-      "lastModificationDate": 1720279246057,
+      "lastModificationDate": 1720370137818,
       "contentHash": "d3c790edc9ccf808a17c5a6cd13614fd",
       "sourceName": "@openzeppelin/contracts/access/Ownable.sol",
       "solcConfig": {
@@ -94,7 +96,8 @@
                 "evm.bytecode",
                 "evm.deployedBytecode",
                 "evm.methodIdentifiers",
-                "metadata"
+                "metadata",
+                "storageLayout"
               ],
               "": [
                 "ast"
@@ -114,7 +117,7 @@
       ]
     },
     "C:\\Users\\andre\\OneDrive\\Desktop\\Coding\\Personal Projects\\ItemTemplate\\ItemTemplate\\node_modules\\@openzeppelin\\contracts\\utils\\Context.sol": {
-      "lastModificationDate": 1720279246361,
+      "lastModificationDate": 1720370138085,
       "contentHash": "67bfbc07588eb8683b3fd8f6f909563e",
       "sourceName": "@openzeppelin/contracts/utils/Context.sol",
       "solcConfig": {
@@ -132,7 +135,8 @@
                 "evm.bytecode",
                 "evm.deployedBytecode",
                 "evm.methodIdentifiers",
-                "metadata"
+                "metadata",
+                "storageLayout"
               ],
               "": [
                 "ast"

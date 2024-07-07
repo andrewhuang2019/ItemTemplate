@@ -1,5 +1,6 @@
 // hardhat.config.js
-require("@nomicfoundation/hardhat-ethers");
+require('@nomicfoundation/hardhat-ethers');
+require('@openzeppelin/hardhat-upgrades')
 //require("@nomiclabs/hardhat-waffle");
 
 /** @type import('hardhat/config').HardhatUserConfig */
