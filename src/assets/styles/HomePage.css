@@ -1,0 +1,17 @@
+.background{
+    background-color: black;
+    background-size:cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+.home-page-title{
+    background-color: white;
+    font-family: 'Times New Roman', Times, serif;
+}
+
