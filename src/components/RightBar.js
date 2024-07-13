@@ -3,7 +3,7 @@ import "../assets/styles/RightBar.css"
 
 const RightBar = () => {
     return(
-        <div className="content">
+        <div className="right-bar-content">
             right bar
         </div>
     );

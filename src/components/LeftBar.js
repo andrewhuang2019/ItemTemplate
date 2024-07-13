@@ -3,7 +3,7 @@ import "../assets/styles/LeftBar.css"
 
 const LeftBar = () => {
     return(
-        <div className="content">
+        <div className="left-bar-content">
             left bar
         </div>
     );
