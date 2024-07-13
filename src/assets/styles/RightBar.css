@@ -1,4 +1,9 @@
 .right-bar-content{
+    background-image: url('../img/black-wood-background.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+
     color: white;
     background-color: blue;
     width: 20%;

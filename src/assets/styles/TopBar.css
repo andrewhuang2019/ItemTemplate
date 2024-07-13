@@ -1,8 +1,23 @@
 .top-bar-content{
-    color: white;
+    background-image: url('../img/cobblestone-background.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+
+    color: black;
     background-color: red;
-    height: 20%;
+    height: 15%;
     width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.title{
+    font-size: 300%;
+    height: 100%;
+    width: 100%;
+
     text-align: center;
     align-items: center;
+    vertical-align: middle;
 }

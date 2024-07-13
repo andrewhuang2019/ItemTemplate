@@ -16,10 +16,16 @@
 .main-content{
     display: flex;
     flex-direction: row;
-    height: 80%;
+    height: 85%;
 }
 
 .center{
+    background-image: url('../img/brown-wood-background.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+
+    color: white;
     background-color: white;
     font-family: 'Times New Roman', Times, serif;
     width: 60%
