@@ -1,8 +1,15 @@
+
+import { 
+    ChakraProvider 
+
+} from "@chakra-ui/react";
+
 import React from "react";
 import "../assets/styles/HomePage.css"
 import LeftBar from "../components/LeftBar"
 import RightBar from "../components/RightBar"
 import TopBar from "../components/TopBar";
+import Minter from "../components/Minter";
 
 const HomePage = () => {
     return (
@@ -14,6 +21,7 @@ const HomePage = () => {
                     
                     <h2>HomePage of UI</h2>
                     <p>This is the home page of the UI</p>
+                    <Minter />
                 </div>
                 <RightBar />
             </div>
