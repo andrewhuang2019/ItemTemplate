@@ -3,12 +3,14 @@ import {
 
 } from '@chakra-ui/react'
 
+//import { deploy } from '../../scripts/deploy_item_nft';
+
 const Minter = () => {
 
     const mintItem = async () => {
 
 
-        
+
     }
 
     return(    
@@ -16,7 +18,7 @@ const Minter = () => {
         colorScheme='blue' 
         variant='solid'
         LoadingText='Minting'
-        onClick="">
+        onClick={mintItem}>
             Mint
         </Button>
     );

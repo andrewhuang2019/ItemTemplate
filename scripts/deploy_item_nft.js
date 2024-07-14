@@ -1,6 +1,6 @@
 const { ethers } = require("hardhat");
 
-async function main() {
+async function deploy() {
     const ItemNFT = await ethers.getContractFactory("ItemNFT")
 
     const initialOwner = '0x8626f6940E2eb28930eFb4CeF49B2d1F2C9C1199'
@@ -11,9 +11,12 @@ async function main() {
 
 }
 
+/*
 main()
   .then(() => process.exit(0))
   .catch((error) => {
     console.error(error);
     process.exit(1);
-  });
+  });*/
+
+export default deploy;
