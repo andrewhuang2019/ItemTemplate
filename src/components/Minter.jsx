@@ -9,7 +9,7 @@ const Minter = () => {
 
     const mintItem = async () => {
 
-
+        console.log("Minted Item")
 
     }
 
@@ -17,7 +17,6 @@ const Minter = () => {
         <Button 
         colorScheme='blue' 
         variant='solid'
-        LoadingText='Minting'
         onClick={mintItem}>
             Mint
         </Button>
