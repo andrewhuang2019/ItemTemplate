@@ -41,8 +41,23 @@ const HomePage = () => {
                       colorScheme="blue"
                       onClick={checkMetaMaskAndNetwork}
                     >
-
+                    Mint Item
                     </Button>
+
+                    <Button 
+                      colorScheme="blue"
+                      onClick={checkMetaMaskAndNetwork}
+                    >
+                    Mint Component
+                    </Button>
+
+                    <Button 
+                      colorScheme="blue"
+                      onClick={checkMetaMaskAndNetwork}
+                    >
+                    Mint Material
+                    </Button>
+
                     <Minter />
                 </div>
                 <RightBar />
