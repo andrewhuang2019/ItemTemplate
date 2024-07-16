@@ -28,6 +28,13 @@ contract ItemNFT is ERC721, ERC721URIStorage, ERC721Burnable, Ownable {
         return super.tokenURI(tokenId);
     }
 
+    function setTokenURI(uint256 tokenId, string memory uri) 
+        public 
+        onlyOwner 
+    {
+        _setTokenURI(tokenId, uri);
+    }
+
     function supportsInterface(bytes4 interfaceId)
         public
         view
