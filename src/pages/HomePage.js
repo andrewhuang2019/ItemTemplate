@@ -10,21 +10,13 @@ import LeftBar from "../components/LeftBar"
 import RightBar from "../components/RightBar"
 import TopBar from "../components/TopBar";
 import Minter from "../components/Minter";
+import MainArea from "../components/MainArea";
 
 import { ConnectMetaProvider } from '../back-end/connectMeta';
 
 const HomePage = () => {
 
-    const checkMetaMaskAndNetwork = async () => {
-        if(window.ethereum && window.ethereum.isMetaMask){
-            const chainID = await window.ethereum.request({method: "eth_chainId"})
-            if (chainID == "0x7e5"){
-                console.log("On correct network")
-            } else {
-                console.log("Not correct network")
-            }
-        }
-    };
+
 
     return (
         <div className="background">
@@ -36,28 +28,7 @@ const HomePage = () => {
                     
                     <h2>HomePage of UI</h2>
                     <p>This is the home page of the UI</p>
-
-                    <Button 
-                      colorScheme="blue"
-                      onClick={checkMetaMaskAndNetwork}
-                    >
-                    Mint Item
-                    </Button>
-
-                    <Button 
-                      colorScheme="blue"
-                      onClick={checkMetaMaskAndNetwork}
-                    >
-                    Mint Component
-                    </Button>
-
-                    <Button 
-                      colorScheme="blue"
-                      onClick={checkMetaMaskAndNetwork}
-                    >
-                    Mint Material
-                    </Button>
-
+                    <MainArea />
                     <Minter />
                 </div>
                 <RightBar />
