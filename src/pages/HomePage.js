@@ -29,7 +29,6 @@ const HomePage = () => {
                     <h2>HomePage of UI</h2>
                     <p>This is the home page of the UI</p>
                     <MainArea />
-                    <Minter />
                 </div>
                 <RightBar />
             </div>
