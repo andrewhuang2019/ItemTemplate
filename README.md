@@ -20,10 +20,11 @@ The project has many dependencies which it uses. Make your way to the root direc
 The steps below describe how to download the dependencies. Use the command which best suits your system.  
 1. The first is node.js:  
 Install [Here](https://nodejs.org/en/download/package-manager).  The version which is used is the v20.15.1 (LTS). 
-2. The second is the React framework. Install by typing: 
+2. The second is the React framework. Install by typing:  
 `npm install react react-dom` or `yarn add react react-dom`  
 3. The third is the Chakra UI libraries. Insall by typing:  
-`npm i @chakra-ui/react @emotion/react @emotion/styled framer-motion` or `yarn add @chakra-ui/react @emotion/react @emotion/styled framer-motion`  
+`npm i @chakra-ui/react @emotion/react @emotion/styled framer-motion` or  
+`yarn add @chakra-ui/react @emotion/react @emotion/styled framer-motion`  
 4. The fourth is the Formik UI libraries. Install by typing:  
 `npm install formik --save` or `yarn add formik`  
 
