@@ -1,5 +1,5 @@
 .top-bar-content{
-    background-image: url('../img/cobblestone-background.png');
+    background-image: url('../img/cobblestone-background-2.png');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
@@ -13,7 +13,7 @@
 }
 
 .title{
-    font-size: 300%;
+    font-size: 3rem;
     height: 100%;
     width: 100%;
 
