@@ -1,24 +1,28 @@
 const { ethers } = require("hardhat");
 
-async function mint() {
-    const nftcontractaddress = "0x8626f6940E2eb28930eFb4CeF49B2d1F2C9C1199";
-    const recipient = "0x8626f6940E2eb28930eFb4CeF49B2d1F2C9C1199";
-    const tokenURI = "";
+async function main() {
+    
+    const [owner] = await ethers.getSigners();
+  
+    const nftcontractaddress = "0x5FbDB2315678afecb367f032d93F642f64180aa3";
 
     const ItemNFT = await ethers.getContractFactory("ItemNFT")
     const itemNFT = await ItemNFT.attach(nftcontractaddress)
 
-    const transaction = await itemNFT.safeMint(recipient)
+    const tokenId = 1;
+    const tokenURI = "http://localhost:8080/token-uri-1.json";
+
+    const transaction = await itemNFT.safeMint(owner.address, tokenId, tokenURI)
     await transaction.wait()
-     
-    console.log("Minted NFT to:" , recipient)
+    console.log(`Minted NFT to: ${owner.address}`)
+
 }
 
-/*main() 
+main() 
   .then(() => process.exit(0))
   .catch((error) => {
     console.error(error);
     process.exit(1);
-  });*/
+  });
 
-export default mint();
+//export default mint();

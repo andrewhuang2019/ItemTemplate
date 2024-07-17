@@ -14,10 +14,18 @@ contract ItemNFT is ERC721, ERC721URIStorage, ERC721Burnable, Ownable {
         Ownable(initialOwner)
     {}
 
-    function safeMint(address to) public onlyOwner {
+    function safeMint(address to, uint256 tokenId, string memory uri) public onlyOwner {
+        //uint256 tokenId = _nextTokenId++;
+        _safeMint(to, tokenId);
+        _setTokenURI(tokenId, uri);
+    }
+
+/*
+    function safeMint(address to, string memory uri) public onlyOwner {
         uint256 tokenId = _nextTokenId++;
         _safeMint(to, tokenId);
-    }
+        _setTokenURI(tokenId, uri);
+    }*/
 
     function tokenURI(uint256 tokenId)
         public
@@ -29,8 +37,8 @@ contract ItemNFT is ERC721, ERC721URIStorage, ERC721Burnable, Ownable {
     }
 
     function setTokenURI(uint256 tokenId, string memory uri) 
-        public 
-        onlyOwner 
+        public
+        onlyOwner
     {
         _setTokenURI(tokenId, uri);
     }
