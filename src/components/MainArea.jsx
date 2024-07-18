@@ -1,6 +1,7 @@
 import React from  "react";
 import "../assets/styles/MainArea.css";
 import NFTImage from "./NFTImage.jsx";
+import ItemForm from "./ItemForm.jsx";
 
 import {
     Button,
@@ -61,42 +62,17 @@ const MainArea = () => {
             colorScheme="blue"
             onClick={mintItemPopup}
             >
-            Mint Item
+            Open Metadata
             </Button>
             <Modal isOpen={isOpen} onClose={onClose}>
                     
                 <ModalOverlay />
                 
                 <ModalContent>
-                    <ModalHeader>Mint Item:</ModalHeader>
+                    <ModalHeader>Change Metadata:</ModalHeader>
                     <ModalCloseButton />
                     <ModalBody>
-                            <Formik
-                            initialValues={{name: "Item NFT"
-                            }}
-                            onSubmit={(values, actions) => {
-                                setTimeout(() =>{
-                                    alert(JSON.stringify(values, null, 2))
-                                    actions.setSubmitting(false)
-                                }, 1000)
-                            }}
-                            >
-                                {(props) => (
-                            <Form>
-                                <Field name="name">
-                                    {(field) => (
-                                    <FormControl>
-                                        <FormLabel>Metadata</FormLabel>
-                                        <Input {...field } placeholder='name' size="sm"/>
-                                    </FormControl>)}
-                                </Field>
-                            <Button type='submit' isLoading={props.isSubmitting}>
-                                    Mint Item
-                            </Button>  
-                        </Form>
-                        )}
-                        </Formik>
-    
+                        <ItemForm />
                     </ModalBody>
                     
                     <ModalFooter>
@@ -110,6 +86,18 @@ const MainArea = () => {
 
             </Modal>
 
+            <Button 
+            colorScheme="blue"
+            onClick={mintItemPopup}
+            >
+                Mint Item
+            </Button>
+
+        </Box>
+
+    );
+};
+/*
             <Button
             colorScheme="blue"
             onClick={checkMetaMaskAndNetwork}>
@@ -122,9 +110,6 @@ const MainArea = () => {
             >
             Mint Material
             </Button>
-        </Box>
-
-    );
-};
+*/
 
 export default MainArea;
