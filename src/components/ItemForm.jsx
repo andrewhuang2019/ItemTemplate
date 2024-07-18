@@ -2,7 +2,8 @@ import {
     Button,
     FormLabel,
     FormControl,
-    Input
+    Input,
+    Textarea
 } from '@chakra-ui/react'
 
 import { Field, Form, Formik } from 'formik';
@@ -31,6 +32,18 @@ const ItemForm = () => {
                     <FormControl isInvalid={form.errors.name && form.touched.name}>
                         <FormLabel className="form-label">name</FormLabel>
                         <Input {...field } placeholder='name' size="sm"/>
+                        {form.errors.name && form.touched.name && (
+                            <FormErrorMessage>{form.errors.name}</FormErrorMessage>
+                        )}
+                    </FormControl>)}
+                </Field>
+
+                
+                <Field name="description">
+                    {({field, form}) => (
+                    <FormControl isInvalid={form.errors.name && form.touched.name}>
+                        <FormLabel className="form-label">description</FormLabel>
+                        <Textarea {...field } placeholder='description' size="sm"/>
                         {form.errors.name && form.touched.name && (
                             <FormErrorMessage>{form.errors.name}</FormErrorMessage>
                         )}
