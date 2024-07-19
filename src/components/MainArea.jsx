@@ -2,6 +2,7 @@ import React from  "react";
 import "../assets/styles/MainArea.css";
 import NFTImage from "./NFTImage.jsx";
 import ItemForm from "./ItemForm.jsx";
+import Minter from "./Minter.jsx";
 
 import {
     Button,
@@ -92,6 +93,8 @@ const MainArea = () => {
             >
                 Mint Item
             </Button>
+
+            <Minter />
 
         </Box>
 

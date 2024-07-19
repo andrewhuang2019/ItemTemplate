@@ -1,6 +1,6 @@
 import { 
-    Button 
-
+    Button,
+    Box
 } from '@chakra-ui/react';
 
 import React, {useState} from 'react';
@@ -11,7 +11,7 @@ import abi from '../abis/itemContractABI.json';
 
 const uri = '../data.json';
 
-const contractAddress = 'YOUR_CONTRACT_ADDRESS';
+const contractAddress = '0x5fbdb2315678afecb367f032d93f642f64180aa3';
 
 const Minter = () => {
 
@@ -23,8 +23,33 @@ const Minter = () => {
     const connectWallet = async () => {
         if (window.ethereum){
             try{
-                const accounts = await window.ethereum.request({method: 'eth_accounts'});
+                const accounts = await window.ethereum.request({method: 'eth_requestAccounts'});
+                    if(accounts.length > 0){
+                        await window.ethereum.request({method: "wallet_addEthereumChain",
+                            params: [
+                                {
+                                    chainId: "0x7e5", //chain is hexadecimal
+                                    chainName: "Ronin Saigon",
+                                    nativeCurrency: {
+                                        name:"RON",
+                                        symbol: "RON",
+                                        decimals: 18,
+                                    },
+                                    rpcUrls: ["https://saigon-testnet.roninchain.com/rpc"],
+                                    blockExplorerUrls: ["https://saigon-app.roninchain.com/"],
+                                }
+                                ]
+                        }) 
+                        
+                        await window.ethereum.request({method: "wallet_switchEthereumChain",
+                            params: [{
+                                "chainId": "0x7e5"
+                            }]
+                        })
+                    }
+                
                 setAccount(accounts[0]);
+                console.log("Connection successful: ", accounts[0])
             } catch (error) {
                 console.error('Connecting to wallet did not work');
             }
@@ -41,13 +66,13 @@ const Minter = () => {
         } else {
             try {
                 setMinting(true);
-
                 const provider = new ethers.providers.Web3Provider(window.ethereum);
                 const signer = provider.getSigner();
-                const contract = new ethers.Contract(
+                const contract = new ethers.Contract({
                     contractAddress,
                     abi,
                     signer
+                }
                 )
 
                 const tx = await contract.safeMint(account, 1, uri);
@@ -56,7 +81,7 @@ const Minter = () => {
                 console.log("NFT Minted to:", tx.address);
 
             } catch (error) {
-                console.log('Issue with minting the NFT');
+                console.log('Issue with minting the NFT: ', error);
             } finally {
                 setMinting(false);
             }
