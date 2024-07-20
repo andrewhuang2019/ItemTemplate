@@ -2,7 +2,7 @@
     "name": "Item NFT",
     "description": "NFT Item for Game",
     "image": {
-        "src": "url goes here"
+        "src": ""
     },
     "model": {
         "src": "item model goes here"
