@@ -4,7 +4,9 @@ import NFTImage from "./NFTImage.jsx";
 
 import { ethers } from "ethers";
 
+const contractAddress = 'contract address here';
 
+const contractABI = 'contractABI here';
 
 const LeftBar = () => {
     const [NFTs, setNFTs] = useState([])
@@ -15,6 +17,17 @@ const LeftBar = () => {
     const getNFTs = async () => {
 
         const provider = new ethers.Web3Provider(window.ethereum);
+        await provider.send("eth_requestAccounts", []);
+
+        const contract = new ethers.Contract(
+            contractAddress,
+            contractABI.abi,
+            provider
+        )
+
+        //get total supply of NFTs created here.
+
+        // 
     }
 
     return(
