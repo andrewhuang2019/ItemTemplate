@@ -9,7 +9,7 @@ async function main() {
     const itemNFT = await ItemNFT.deploy(owner.address);
     await itemNFT.deployed();
 
-    console.log("MyContract deployed to:", itemNFT.address);
+    console.log("ItemNFTContract deployed to:", itemNFT.address);
 
 }
 

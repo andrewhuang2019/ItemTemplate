@@ -7,11 +7,11 @@ import React, {useState} from 'react';
 
 import { ethers } from 'ethers';
 
-import abi from '../abis/itemContractABI.json';
+import ItemNFT from '../abis/itemContractABI.json';
 
 const uri = '../data.json';
 
-const contractAddress = '0x5fbdb2315678afecb367f032d93f642f64180aa3';
+const contractAddress = '0x5FbDB2315678afecb367f032d93F642f64180aa3';
 
 const Minter = () => {
 
@@ -28,22 +28,22 @@ const Minter = () => {
                         await window.ethereum.request({method: "wallet_addEthereumChain",
                             params: [
                                 {
-                                    chainId: "0x7e5", //chain is hexadecimal
-                                    chainName: "Ronin Saigon",
+                                    chainId: "0x7a69", //"0x7e5", //chain is hexadecimal
+                                    chainName: "Hardhat Local Network", // "Ronin Saigon",
                                     nativeCurrency: {
-                                        name:"RON",
-                                        symbol: "RON",
+                                        name: "ETH", //"RON",
+                                        symbol: "ETH", //"RON",
                                         decimals: 18,
                                     },
-                                    rpcUrls: ["https://saigon-testnet.roninchain.com/rpc"],
-                                    blockExplorerUrls: ["https://saigon-app.roninchain.com/"],
+                                    rpcUrls: ["http://127.0.0.1:8545/"]//["https://saigon-testnet.roninchain.com/rpc"],
+                                    //blockExplorerUrls: ["https://saigon-app.roninchain.com/"],
                                 }
                                 ]
                         }) 
                         
                         await window.ethereum.request({method: "wallet_switchEthereumChain",
                             params: [{
-                                "chainId": "0x7e5"
+                                "chainId": "0x7a69" //"0x7e5"
                             }]
                         })
                     }
@@ -65,15 +65,19 @@ const Minter = () => {
             return;
         } else {
             try {
+
+                // Getting an internal RPC error here. Try to fix later!
+
                 setMinting(true);
                 const provider = new ethers.providers.Web3Provider(window.ethereum);
+                await provider.send("eth_requestAccounts", []);
                 const signer = provider.getSigner();
-                const contract = new ethers.Contract({
+                const contract = new ethers.Contract(
                     contractAddress,
-                    abi,
+                    ItemNFT.abi,
                     signer
-                }
-                )
+                
+                );
 
                 const tx = await contract.safeMint(account, 1, uri);
                 await tx.wait();
