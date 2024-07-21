@@ -32,50 +32,105 @@ const ItemForm = () => {
         }
     }
 
+    const pinImageToIPFS = async (file) => {
+
+        try {
+            const formData = new FormData();
+            formData.append("file", file);
+
+            const response = await fetch(
+                "https://api.pinata.cloud/pinning/pinFileToIPFS",
+                {
+                    method: "POST",
+                    headers: {
+                        Authorization: `Bearer ${process.env.REACT_APP_PINATA_JWT}`,
+                    },
+                    body: formData
+                },
+
+            );
+
+            if (response.ok){
+                const responseData = await response.json();
+                console.log("Image pinned successfully", responseData);
+
+                //updates updatedData image to be the IPFS one
+                const imageURL = `ipfs://${responseData.IpfsHash}`;
+
+                return imageURL;
+
+            } else {
+                console.error("Failed to pin file", response.statusText);
+            }
+        } catch (error) {
+            console.log("Failed to upload image to IPFS: ", error);
+        }
+    }
+
+    const pinJsonToIPFS = async (jsonData) => {
+        try {
+            // issue is occurring here.
+            const response = await fetch(
+                "https://api.pinata.cloud/pinning/pinJSONToIPFS",
+                {
+                    method: "POST",
+                    headers: {
+                        Authorization: `Bearer ${process.env.REACT_APP_PINATA_JWT}`,
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(jsonData)
+                },                
+            );
+            if (response.ok){
+
+                const returnedData = await response.json();
+                console.log("JSON Pinned Successfully: ", returnedData);
+                return returnedData.IpfsHash;
+
+            } else {
+                console.log("Failed to pin JSON: ", response.statusText);
+            }
+
+        } catch (error) {
+            console.log("Failed to pin JSON data: ", error);
+        }
+    }
+
     const handleSubmit = async (values, actions) => {
         if (file) {
             const reader = new FileReader();
+
+            const updatedData = {
+                ...data,
+                name: values.name,
+                stats: {
+                    health: values.stats.health,
+                    attack: values.stats.attack,
+                    defense: values.stats.defense,
+                    speed: values.stats.speed
+                },
+                image: ""
+            };
 
             reader.onloadend = async () => {
 
                 
                 //Try to send the data to IPFS system and get the CID back from them. 
                 try {
-                    const formData = new FormData();
-                    formData.append("file", file);
-    
-                    const response = await fetch(
-                        "https://api.pinata.cloud/pinning/pinFileToIPFS",
-                        {
-                            method: "POST",
-                            headers: {
-                                Authorization: `Bearer ${process.env.REACT_APP_PINATA_JWT}`,
-                            },
-                            body: formData
-                        },
-    
-                    );
 
-                    if (response.ok){
-                        const responseData = await response.json();
-                        console.log("File pinned successfully", responseData);
+                    // now i need to get the updated data and pin it to the website as well.
+                    // save the resulting url and pass that in as the minting uri 
+                    // upload the image to ipfs
+                    updatedData.image = await pinImageToIPFS(file);
 
-                        //updates updatedData image to be the IPFS one
-                        updatedData.image = `ipfs://${responseData.IpfsHash}`;
+                    // store the image's url link in the json file
+                    // upload the json file to ipfs
+                    // fetch the json file
+                    const jsonCID = await pinJsonToIPFS(updatedData);
 
-                        // now i need to get the updated data and pin it to the website as well.
-                        // save the resulting url and pass that in as the minting uri 
-                        // upload the image to ipfs
-                        // store the image's url link in the json file
-                        // upload the json file to ipfs
-                        // fetch the json file
+                    console.log("Json data successfully pinned: ", jsonCID);
 
-                        // get the src of the image from the json file and pass that into gallery or smth. <- do in the gallery section
-
-
-                    } else {
-                        console.error("Failed to pin file", response.statusText);
-                    }
+                    // get the src of the image from the json file and pass that into gallery or smth. <- do in the gallery section
 
                 } catch (error) {
                     console.error("Error uploading to IPFS:", error);
