@@ -20,8 +20,6 @@ const ItemForm = () => {
     const [imagePreview, setImagePreview] = useState(null);
     const fileInputRef = useRef(null);
 
-    console.log('PINATA JWT: ', process.env.REACT_APP_PINATA_JWT);
-
     const handleFileChange = (event) => {
         const chosenFile = event.currentTarget.files[0];
         if (chosenFile){
@@ -37,22 +35,8 @@ const ItemForm = () => {
     const handleSubmit = async (values, actions) => {
         if (file) {
             const reader = new FileReader();
+
             reader.onloadend = async () => {
-                const base64Image = reader.result;
-
-                const updatedData = {
-                    ...data,
-                    name: values.name,
-                    stats: {
-                        health: values.stats.health,
-                        attack: values.stats.attack,
-                        defense: values.stats.defense,
-                        speed: values.stats.speed
-                    },
-
-                    // change this later to link where the image is stored
-                    image: base64Image
-                };
 
                 
                 //Try to send the data to IPFS system and get the CID back from them. 
@@ -76,7 +60,19 @@ const ItemForm = () => {
                         const responseData = await response.json();
                         console.log("File pinned successfully", responseData);
 
+                        //updates updatedData image to be the IPFS one
                         updatedData.image = `ipfs://${responseData.IpfsHash}`;
+
+                        // now i need to get the updated data and pin it to the website as well.
+                        // save the resulting url and pass that in as the minting uri 
+                        // upload the image to ipfs
+                        // store the image's url link in the json file
+                        // upload the json file to ipfs
+                        // fetch the json file
+
+                        // get the src of the image from the json file and pass that into gallery or smth. <- do in the gallery section
+
+
                     } else {
                         console.error("Failed to pin file", response.statusText);
                     }
