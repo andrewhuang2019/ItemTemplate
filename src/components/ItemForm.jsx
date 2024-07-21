@@ -20,6 +20,8 @@ const ItemForm = () => {
     const [imagePreview, setImagePreview] = useState(null);
     const fileInputRef = useRef(null);
 
+    console.log('PINATA JWT: ', process.env.REACT_APP_PINATA_JWT);
+
     const handleFileChange = (event) => {
         const chosenFile = event.currentTarget.files[0];
         if (chosenFile){
@@ -63,7 +65,7 @@ const ItemForm = () => {
                         {
                             method: "POST",
                             headers: {
-                                Authorization: `Bearer ${process.env.NEXT_PUBLIC_PINATA_JWT}`,
+                                Authorization: `Bearer ${process.env.REACT_APP_PINATA_JWT}`,
                             },
                             body: formData
                         },
@@ -71,11 +73,16 @@ const ItemForm = () => {
                     );
 
                     if (response.ok){
-                        const data = await response.json();
+                        const responseData = await response.json();
+                        console.log("File pinned successfully", responseData);
+
+                        updatedData.image = `ipfs://${responseData.IpfsHash}`;
+                    } else {
+                        console.error("Failed to pin file", response.statusText);
                     }
 
                 } catch (error) {
-
+                    console.error("Error uploading to IPFS:", error);
                 }
 
 
