@@ -19,6 +19,7 @@ const ItemForm = () => {
     const [file, setFile] = useState(null);
     const [imagePreview, setImagePreview] = useState(null);
     const fileInputRef = useRef(null);
+    const [URI, setURI] = useState(null);
 
     const handleFileChange = (event) => {
         const chosenFile = event.currentTarget.files[0];
@@ -55,7 +56,8 @@ const ItemForm = () => {
                 console.log("Image pinned successfully", responseData);
 
                 //updates updatedData image to be the IPFS one
-                const imageURL = `ipfs://${responseData.IpfsHash}`;
+                //maybe return an image url where to find the data instead?
+                const imageURL = `${process.env.REACT_APP_GATEWAY_URL}/ipfs/${responseData.IpfsHash}`;
 
                 return imageURL;
 
@@ -85,6 +87,8 @@ const ItemForm = () => {
 
                 const returnedData = await response.json();
                 console.log("JSON Pinned Successfully: ", returnedData);
+
+                //CID
                 return returnedData.IpfsHash;
 
             } else {
@@ -129,6 +133,8 @@ const ItemForm = () => {
                     const jsonCID = await pinJsonToIPFS(updatedData);
 
                     console.log("Json data successfully pinned: ", jsonCID);
+
+                    setURI(jsonCID);
 
                     // get the src of the image from the json file and pass that into gallery or smth. <- do in the gallery section
 

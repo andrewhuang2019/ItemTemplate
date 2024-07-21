@@ -4,16 +4,17 @@ import {
     Text
 } from "@chakra-ui/react";
 
-const NFTImage = ({src}) => {
+const NFTImage = ({name, image, stats}) => {
     return(
         <Box>
             <Image
-            src={src}>
+            src={image}>
 
             </Image>
             <Box>
                 <Text>
-                    Test:
+                    Name: {name}
+                    Stats: {stats}
 
                 </Text>
             </Box>

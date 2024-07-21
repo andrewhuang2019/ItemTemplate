@@ -19,6 +19,13 @@ const Minter = () => {
     const [minting, setMinting] = useState(false);
     const {isOnSaigonNetwork} = {};
 
+    // Get the URI of the token from the ItemForm
+    // If there is no return on the ItemForm, use the default data.json file.
+
+    const getItemFormURI = async () => {
+
+    }
+
     // Connect to MetaMask wallet
     const connectWallet = async () => {
         if (window.ethereum){
@@ -73,7 +80,7 @@ const Minter = () => {
                 await provider.send("eth_requestAccounts", []);
                 const signer = provider.getSigner();
                 const contract = new ethers.Contract(
-                    contractAddress,
+                    process.env.REACT_APP_CONTRACT_ADDRESS,
                     ItemNFT.abi,
                     signer
                 
