@@ -1,83 +1,6 @@
 {
   "_format": "hh-sol-cache-2",
   "files": {
-    "C:\\Users\\andre\\OneDrive\\Desktop\\Coding\\Personal Projects\\ItemTemplate\\ItemTemplate\\contracts\\MyContract.sol": {
-      "lastModificationDate": 1720646627802,
-      "contentHash": "16c74208ea3e37a36cee8f146d06d38d",
-      "sourceName": "contracts/MyContract.sol",
-      "solcConfig": {
-        "version": "0.8.24",
-        "settings": {
-          "evmVersion": "paris",
-          "optimizer": {
-            "enabled": false,
-            "runs": 200
-          },
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [],
-      "versionPragmas": [
-        "^0.8.4"
-      ],
-      "artifacts": [
-        "MyContract"
-      ]
-    },
-    "C:\\Users\\andre\\OneDrive\\Desktop\\Coding\\Personal Projects\\ItemTemplate\\ItemTemplate\\contracts\\tokens\\DevToken.sol": {
-      "lastModificationDate": 1720807845702,
-      "contentHash": "3e5da47e548ca9f07f49f3497c825861",
-      "sourceName": "contracts/tokens/DevToken.sol",
-      "solcConfig": {
-        "version": "0.8.24",
-        "settings": {
-          "evmVersion": "paris",
-          "optimizer": {
-            "enabled": false,
-            "runs": 200
-          },
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [
-        "@openzeppelin/contracts/token/ERC20/ERC20.sol",
-        "@openzeppelin/contracts/token/ERC20/extensions/ERC20Burnable.sol",
-        "@openzeppelin/contracts/access/Ownable.sol",
-        "@openzeppelin/contracts/token/ERC20/extensions/ERC20Permit.sol"
-      ],
-      "versionPragmas": [
-        "^0.8.20"
-      ],
-      "artifacts": [
-        "DevToken"
-      ]
-    },
     "C:\\Users\\andre\\OneDrive\\Desktop\\Coding\\Personal Projects\\ItemTemplate\\ItemTemplate\\node_modules\\@openzeppelin\\contracts\\token\\ERC20\\ERC20.sol": {
       "lastModificationDate": 1720722698012,
       "contentHash": "c6375ef25e84c90b3d15f9ec4eef218f",
@@ -793,47 +716,6 @@
         "SignedMath"
       ]
     },
-    "C:\\Users\\andre\\OneDrive\\Desktop\\Coding\\Personal Projects\\ItemTemplate\\ItemTemplate\\contracts\\nfts\\ItemNFT.sol": {
-      "lastModificationDate": 1721612297366,
-      "contentHash": "3a70f365ed7df40b91c553cf7eb0c850",
-      "sourceName": "contracts/nfts/ItemNFT.sol",
-      "solcConfig": {
-        "version": "0.8.24",
-        "settings": {
-          "evmVersion": "paris",
-          "optimizer": {
-            "enabled": false,
-            "runs": 200
-          },
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [
-        "@openzeppelin/contracts/token/ERC721/ERC721.sol",
-        "@openzeppelin/contracts/access/Ownable.sol",
-        "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol",
-        "@openzeppelin/contracts/token/ERC721/extensions/ERC721Burnable.sol"
-      ],
-      "versionPragmas": [
-        "^0.8.20"
-      ],
-      "artifacts": [
-        "ItemNFT"
-      ]
-    },
     "C:\\Users\\andre\\OneDrive\\Desktop\\Coding\\Personal Projects\\ItemTemplate\\ItemTemplate\\node_modules\\@openzeppelin\\contracts\\token\\ERC721\\ERC721.sol": {
       "lastModificationDate": 1720980646951,
       "contentHash": "1e64e2ad597dc5b2dae11346502baad4",
@@ -1254,6 +1136,124 @@
         "^0.8.20"
       ],
       "artifacts": []
+    },
+    "C:\\Users\\andre\\OneDrive\\Desktop\\Coding\\Personal Projects\\ItemTemplate\\ItemTemplate\\contracts\\MyContract.sol": {
+      "lastModificationDate": 1721612297366,
+      "contentHash": "16c74208ea3e37a36cee8f146d06d38d",
+      "sourceName": "contracts/MyContract.sol",
+      "solcConfig": {
+        "version": "0.8.24",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.4"
+      ],
+      "artifacts": [
+        "MyContract"
+      ]
+    },
+    "C:\\Users\\andre\\OneDrive\\Desktop\\Coding\\Personal Projects\\ItemTemplate\\ItemTemplate\\contracts\\nfts\\ItemNFT.sol": {
+      "lastModificationDate": 1721612297366,
+      "contentHash": "3a70f365ed7df40b91c553cf7eb0c850",
+      "sourceName": "contracts/nfts/ItemNFT.sol",
+      "solcConfig": {
+        "version": "0.8.24",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "@openzeppelin/contracts/token/ERC721/ERC721.sol",
+        "@openzeppelin/contracts/access/Ownable.sol",
+        "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol",
+        "@openzeppelin/contracts/token/ERC721/extensions/ERC721Burnable.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.20"
+      ],
+      "artifacts": [
+        "ItemNFT"
+      ]
+    },
+    "C:\\Users\\andre\\OneDrive\\Desktop\\Coding\\Personal Projects\\ItemTemplate\\ItemTemplate\\contracts\\tokens\\DevToken.sol": {
+      "lastModificationDate": 1721612297366,
+      "contentHash": "3e5da47e548ca9f07f49f3497c825861",
+      "sourceName": "contracts/tokens/DevToken.sol",
+      "solcConfig": {
+        "version": "0.8.24",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "@openzeppelin/contracts/token/ERC20/ERC20.sol",
+        "@openzeppelin/contracts/token/ERC20/extensions/ERC20Burnable.sol",
+        "@openzeppelin/contracts/access/Ownable.sol",
+        "@openzeppelin/contracts/token/ERC20/extensions/ERC20Permit.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.20"
+      ],
+      "artifacts": [
+        "DevToken"
+      ]
     }
   }
 }
