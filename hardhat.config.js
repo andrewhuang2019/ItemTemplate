@@ -2,6 +2,8 @@
 require("@nomiclabs/hardhat-waffle")
 require("@nomiclabs/hardhat-ethers")
 
+const SAIGON_PRIVATE_KEY = // Copy and paste private key here! Don't share outside of this project!
+
 module.exports = {
   solidity: "0.8.24",
   networks: {
@@ -10,7 +12,7 @@ module.exports = {
     },
     saigon: {
       url: `https://saigon-testnet.roninchain.com/rpc`, // Saigon RPC URL
-      accounts: [process.env.SAIGON_PRIVATE_KEY] // Here is where the private key is used!
+      accounts: [SAIGON_PRIVATE_KEY] // Here is where the private key is used!
     }
   }
 };
