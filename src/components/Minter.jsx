@@ -52,7 +52,7 @@ const Minter = () => {
                         
                         await window.ethereum.request({method: "wallet_switchEthereumChain",
                             params: [{
-                                "chainId": "0x7a69" //"0x7e5"
+                                "chainId": "0x7e5" //"0x7a69" 
                             }]
                         })
                     }

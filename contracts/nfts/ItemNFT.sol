@@ -8,18 +8,28 @@ import {ERC721Burnable} from "@openzeppelin/contracts/token/ERC721/extensions/ER
 
 contract ItemNFT is ERC721, ERC721URIStorage, ERC721Burnable, Ownable {
     uint256 private _nextTokenId;
+    
+    event Mint(address to, uint256 tokenId, string url);
+    event TokenURISet(uint256 tokenId, string uri);
 
     constructor(address initialOwner)
         ERC721("ItemNFT", "INT")
         Ownable(initialOwner)
-    {}
+    {
+        transferOwnership(initialOwner); 
+        _nextTokenId = 1;
+    }
 
     function safeMint(address to, string memory uri) 
     public  
+    onlyOwner
     {
-        uint256 tokenId = _nextTokenId++;
+        uint256 tokenId = _nextTokenId;
         _safeMint(to, tokenId);
         _setTokenURI(tokenId, uri);
+        _nextTokenId++;
+
+        emit Mint(to, tokenId, uri);
     }
 
     function tokenURI(uint256 tokenId)
@@ -31,7 +41,7 @@ contract ItemNFT is ERC721, ERC721URIStorage, ERC721Burnable, Ownable {
         return super.tokenURI(tokenId);
     }
 
-    function getTokenId() public view returns (uint256) {
+    function getTotalTokens() public view returns (uint256) {
         return _nextTokenId;
     }
 
@@ -40,6 +50,7 @@ contract ItemNFT is ERC721, ERC721URIStorage, ERC721Burnable, Ownable {
         onlyOwner
     {
         _setTokenURI(tokenId, uri);
+        emit TokenURISet(tokenId, uri);
     }
 
     function supportsInterface(bytes4 interfaceId)
@@ -50,4 +61,5 @@ contract ItemNFT is ERC721, ERC721URIStorage, ERC721Burnable, Ownable {
     {
         return super.supportsInterface(interfaceId);
     }
+
 }
