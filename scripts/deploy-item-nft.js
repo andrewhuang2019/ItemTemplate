@@ -5,7 +5,6 @@ async function main() {
 
     const ItemNFT = await ethers.getContractFactory("ItemNFT")
 
-    //const initialOwner = '0x8626f6940E2eb28930eFb4CeF49B2d1F2C9C1199'
     const itemNFT = await ItemNFT.deploy(owner.address);
     await itemNFT.deployed();
 

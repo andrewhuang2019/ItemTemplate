@@ -286,4 +286,8 @@ const ItemForm = () => {
     );
 }
 
+export function getURI() {
+    return URI;
+}
+
 export default ItemForm;

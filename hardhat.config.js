@@ -7,6 +7,10 @@ module.exports = {
   networks: {
     localhost: {
       url: "http://127.0.0.1:8545"
+    },
+    saigon: {
+      url: `https://saigon-testnet.roninchain.com/rpc`, // Saigon RPC URL
+      accounts: [process.env.SAIGON_PRIVATE_KEY] // Here is where the private key is used!
     }
   }
 };
