@@ -28,7 +28,8 @@
     color: white;
     background-color: white;
     font-family: 'Times New Roman', Times, serif;
-    width: 60%
+    width: 60%;
+    overflow-y: auto;
 }
 
 

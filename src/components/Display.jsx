@@ -17,6 +17,9 @@ const Display = () => {
 
     //Use the json file contents to print out in "Display.jsx"
     //Obtain through IPFS
+    useEffect(() => {
+        getNFTs();
+    }, []); 
 
     const getNFTs = async () => {
         try {
@@ -54,7 +57,8 @@ const Display = () => {
                         nfts.push({
                             name: tokenName,
                             image: tokenImage,
-                            stats: tokenStats
+                            stats: tokenStats,
+                            jsonData: data
                         });
                     } else {
                         console.error(`Expected JSON response, got ${contentType}`)
@@ -75,27 +79,32 @@ const Display = () => {
         }
 
         setNFTs(nfts);
+
         } catch (error) {
             console.log("Error in retrieving NFTs: ", error);
         }
     }
 
     return(
-        <Box>
+        <Box position="relative">
             <Button
             colorScheme="blue"
             onClick={getNFTs}>
             Load NFTs
             </Button>
-            <SimpleGrid>
+
+            <SimpleGrid columns={3} spacing={4}>
                 {NFTs.map((nft, index) =>{
-                    <NFTImage
-                    key={index}
-                    name={nft.name}
-                    image={nft.image}
-                    stats={nft.stats}
-                    index={index + 1}
-                    />
+                    return(
+                        <NFTImage
+                        key={index}
+                        name={nft.name}
+                        image={nft.image}
+                        stats={nft.stats}
+                        index={index+1}
+                        jsonData={nft.jsonData}
+                        />
+                    );
                 })}
             </SimpleGrid>
         </Box>

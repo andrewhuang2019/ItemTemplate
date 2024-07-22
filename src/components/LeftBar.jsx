@@ -9,7 +9,6 @@ const LeftBar = () => {
 
     return(
         <div className="left-bar-content">
-            <Display />
         </div>
     );
 };

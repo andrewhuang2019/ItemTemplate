@@ -17,7 +17,7 @@ import "../assets/styles/ItemForm.css";
 
 import { useURI } from '../back-end/URIContext';
 
-const ItemForm = ({children}) => {
+const ItemForm = () => {
     const [file, setFile] = useState(null);
     const [imagePreview, setImagePreview] = useState(null);
     const fileInputRef = useRef(null);

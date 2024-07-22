@@ -22,9 +22,6 @@ const HomePage = () => {
             <div className="main-content">
                 <LeftBar />
                 <div className="center">
-                    
-                    <h2>HomePage of UI</h2>
-                    <p>This is the home page of the UI</p>
                     <MainArea />
                 </div>
                 <RightBar />
