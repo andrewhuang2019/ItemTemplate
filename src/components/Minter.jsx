@@ -97,7 +97,7 @@ const Minter = () => {
                 const tx = await contract.safeMint(account, getURI);
                 await tx.wait();
 
-                const currentToken = await contract.getTokenId();
+                const currentToken = await contract.getTotalTokens();
                 
                 const checkURI = await contract.tokenURI(currentToken);
 
