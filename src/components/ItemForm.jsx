@@ -15,11 +15,13 @@ import data from '../data.json'
 
 import "../assets/styles/ItemForm.css";
 
-const ItemForm = () => {
+import { useURI } from '../back-end/URIContext';
+
+const ItemForm = ({children}) => {
     const [file, setFile] = useState(null);
     const [imagePreview, setImagePreview] = useState(null);
     const fileInputRef = useRef(null);
-    const [URI, setURI] = useState(null);
+    const { setURI } = useURI();
 
     const handleFileChange = (event) => {
         const chosenFile = event.currentTarget.files[0];
@@ -134,7 +136,8 @@ const ItemForm = () => {
 
                     console.log("Json data successfully pinned: ", jsonCID);
 
-                    setURI(jsonCID);
+                    //potentially change to the full link?
+                    setURI(`${process.env.REACT_APP_GATEWAY_URL}/ipfs/${jsonCID}`);
 
                     // get the src of the image from the json file and pass that into gallery or smth. <- do in the gallery section
 
@@ -282,12 +285,10 @@ const ItemForm = () => {
             </Button>  
         </Form>
         )}
-        </Formik>
-    );
-}
 
-export function getURI() {
-    return URI;
+        </Formik>
+
+    );
 }
 
 export default ItemForm;

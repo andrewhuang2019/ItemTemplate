@@ -10,56 +10,62 @@ import NFTImage from "./NFTImage.jsx";
 
 import { ethers } from "ethers";
 
-const contractAddress = 'contract address here';
+import ItemNFT from '../abis/itemContractABI.json';
 
-const contractABI = 'contractABI here';
-
-const LeftBar = () => {
+const Display = () => {
     const [NFTs, setNFTs] = useState([]);
 
     //Use the json file contents to print out in "Display.jsx"
     //Obtain through IPFS
 
     const getNFTs = async () => {
+        try {
 
         const provider = new ethers.providers.Web3Provider(window.ethereum);
         await provider.send("eth_requestAccounts", []);
 
         const contract = new ethers.Contract(
             process.env.REACT_APP_CONTRACT_ADDRESS,
-            contractABI.abi,
+            ItemNFT.abi,
             provider
         )
 
         // get total supply of NFTs created here.
-        const totalTokens = await contract.getTokenId();
+        const totalTokens = await contract.getTotalTokens();
 
         // for every tokenId, get the corresponding URI for that NFT
         let nfts = [];
-        for (let i = 0; i < totalTokens; i++) {
-
-
-            // fetch/parse the json data that was received from that URI 
-            const tokenURI = contract.tokenURI(i);
+        for (let i = 1; i < totalTokens.toNumber(); i++) {
             try {
-                const response = await fetch(`${process.env.REACT_APP_GATEWAY_URL}/ipfs/${tokenURI}`);
+                // fetch/parse the json data that was received from that URI 
+                const tokenURI = await contract.tokenURI(i);
+                const response = await fetch(tokenURI);
+
                 if (response.ok) {
-                    const data = response.json();
-                    console.log("Data retrieved from response: ", data);    
+                    const contentType = response.headers.get("content-type");
+                    if (contentType && contentType.includes("application/json")){
+                        const data = await response.json();
+                        console.log("Data retrieved from response: ", data);    
+    
+                        const tokenName = data.name;
+                        const tokenStats = data.stats;
+                        const tokenImage = data.image;
+    
+                        nfts.push({
+                            name: tokenName,
+                            image: tokenImage,
+                            stats: tokenStats
+                        });
+                    } else {
+                        console.error(`Expected JSON response, got ${contentType}`)
+                    }
 
-                    const tokenName = data.name;
-                    const tokenStats = data.stats;
-                    const tokenImage = data.image;
-
-                    nfts.push({
-                        name: tokenName,
-                        image: tokenImage,
-                        stats: tokenStats
-                    });
-
+                } else {
+                    console.error(`Error fetching tokenURI: ${response.statusText}`)
                 }
+
             } catch (error) {
-                console.log("Error in getting the data from IPFS: ", error)
+                console.log(`Error in getting the data from token ${i} from IPFS: `, error)
             }
 
         // Call a NFTImage and put in the different attributes for each.
@@ -69,33 +75,34 @@ const LeftBar = () => {
         }
 
         setNFTs(nfts);
-
+        } catch (error) {
+            console.log("Error in retrieving NFTs: ", error);
+        }
     }
 
     return(
         <Box>
             <Button
+            colorScheme="blue"
             onClick={getNFTs}>
-
+            Load NFTs
             </Button>
-
-
+            <SimpleGrid>
+                {NFTs.map((nft, index) =>{
+                    <NFTImage
+                    key={index}
+                    name={nft.name}
+                    image={nft.image}
+                    stats={nft.stats}
+                    index={index + 1}
+                    />
+                })}
+            </SimpleGrid>
         </Box>
 
     );
 };
 
-/*    
-<SimpleGrid>
-{NFTs.map((nft, index) =>{
-    <NFTImage
-    key={index}
-    name={nft.name}
-    image={nft.image}
-    stats={nft.stats}
-    index={index + 1}
-    />
-})}
-</SimpleGrid>*/
 
-export default LeftBar;
+
+export default Display;

@@ -9,24 +9,16 @@ import { ethers } from 'ethers';
 
 import ItemNFT from '../abis/itemContractABI.json';
 
-import { getURI } from './ItemForm.jsx';
-
-const uri = '../data.json';
-
-const contractAddress = '0x5FbDB2315678afecb367f032d93F642f64180aa3';
+import { useURI } from '../back-end/URIContext';
 
 const Minter = () => {
 
     const [account, setAccount] = useState(null);
     const [minting, setMinting] = useState(false);
-    const {isOnSaigonNetwork} = {};
+    const { URI } = useURI();
 
     // Get the URI of the token from the ItemForm
     // If there is no return on the ItemForm, use the default data.json file.
-
-    const getItemFormURI = async () => {
-
-    }
 
     // Connect to MetaMask wallet
     const connectWallet = async () => {
@@ -94,12 +86,23 @@ const Minter = () => {
                 
                 );
 
-                const tx = await contract.safeMint(account, getURI);
+                let tokenURI = '../data.json';
+
+                if (URI != "undefined") {
+                    tokenURI = URI;
+                }
+
+                console.log(tokenURI);
+                
+                const currentToken = await contract.getTotalTokens();
+
+                // this is probably not passing through 
+                const tx = await contract.safeMint(account, tokenURI);
                 await tx.wait();
 
-                const currentToken = await contract.getTotalTokens();
+                const newTokenId = currentToken.toNumber();
                 
-                const checkURI = await contract.tokenURI(currentToken);
+                const checkURI = await contract.tokenURI(newTokenId);
 
                 console.log("NFT Minted to:", tx.address);
                 console.log("NFT URI: ", checkURI);
