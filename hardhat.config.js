@@ -2,7 +2,7 @@
 require("@nomiclabs/hardhat-waffle")
 require("@nomiclabs/hardhat-ethers")
 
-const SAIGON_PRIVATE_KEY = // Copy and paste private key here! Don't share outside of this project!
+const SAIGON_PRIVATE_KEY = ''; // Copy and paste private key here! Don't share outside of this project!
 
 module.exports = {
   solidity: "0.8.24",
