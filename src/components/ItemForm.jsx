@@ -23,6 +23,8 @@ const ItemForm = () => {
     const fileInputRef = useRef(null);
     const { setURI } = useURI();
 
+    const [isLoading, setisLoading] = useState(false);
+
     const handleFileChange = (event) => {
         const chosenFile = event.currentTarget.files[0];
         if (chosenFile){
@@ -103,6 +105,7 @@ const ItemForm = () => {
     }
 
     const handleSubmit = async (values, actions) => {
+        setisLoading(true);
         if (file) {
             const reader = new FileReader();
 
@@ -181,7 +184,7 @@ const ItemForm = () => {
             }, 1000);
 
         }
-
+        setisLoading(false);
     };
 
     return (
@@ -280,7 +283,7 @@ const ItemForm = () => {
                 </Field>
 
 
-            <Button type='submit' isLoading={props.isSubmitting}>
+            <Button isLoading={props.isSubmitting} type='submit' >
                     Submit Metadata
             </Button>  
         </Form>

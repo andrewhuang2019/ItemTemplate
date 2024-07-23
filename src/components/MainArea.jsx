@@ -22,10 +22,7 @@ const MainArea = () => {
 
 
     return(
-        <Box>
-            <Display />
-        </Box>
-
+        <Display />
     );
 };
 

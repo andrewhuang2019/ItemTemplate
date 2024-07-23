@@ -4,7 +4,7 @@
     background-repeat: no-repeat;
     background-position: center center;
 
-    color: black;
+    color: gold;
     background-color: red;
     height: 15%;
     width: 100%;
@@ -13,11 +13,10 @@
 }
 
 .title{
-    font-size: 3rem;
+    font-size: 3em;
     height: 100%;
     width: 100%;
 
     text-align: center;
-    align-items: center;
-    vertical-align: middle;
+    margin: 0;
 }

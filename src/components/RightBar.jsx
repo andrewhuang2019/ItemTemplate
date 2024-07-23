@@ -14,10 +14,15 @@ import {
     ModalBody,
     ModalCloseButton,
     useDisclosure,
+    Text
 } from "@chakra-ui/react";
 
+import { useWallet } from '../back-end/WalletContext';
+
 const RightBar = () => {
-    const { isOpen, onOpen, onClose } = useDisclosure();
+    const { isOpen: isMetadataOpen, onOpen: onMetadataOpen, onClose: onMetadataClose } = useDisclosure();
+    const { isOpen: isSendOpen, onOpen: onSendOpen, onClose: onSendClose } = useDisclosure(); 
+    const { isConnecting, connectWallet } = useWallet();
 
     useEffect(() => {
         checkMetaMaskAndNetwork()
@@ -34,21 +39,39 @@ const RightBar = () => {
         }
     };
 
-    const mintItemPopup = async () => {
+    const metaDataPopup = async () => {
         checkMetaMaskAndNetwork();
-        onOpen();
+        onMetadataOpen();
+    }
+
+    const sendNFTPopup = async () => {
+        onSendOpen();
     }
 
     return(
         <div className="right-bar-content">
-            <Box>
+            <Box className="button-container">
+                <Text>
+                    Wallet Not Connected!
+                </Text>
+
                 <Button 
                 colorScheme="blue"
-                onClick={mintItemPopup}
+                onClick={connectWallet}
+                className="button"
+                isLoading={isConnecting}>
+                Connect Wallet
+                </Button>
+
+                <Button 
+                colorScheme="blue"
+                onClick={metaDataPopup}
+                className="button"
                 >
                 Open Metadata
                 </Button>
-                <Modal isOpen={isOpen} onClose={onClose}>
+
+                <Modal isOpen={isMetadataOpen} onClose={onMetadataClose}>
                         
                     <ModalOverlay />
                     
@@ -60,7 +83,7 @@ const RightBar = () => {
                         </ModalBody>
                         
                         <ModalFooter>
-                            <Button onClick={onClose} colorScheme="blue">
+                            <Button onClick={onMetadataClose} colorScheme="blue">
                                 Close
                             </Button>
 
@@ -70,7 +93,35 @@ const RightBar = () => {
 
                 </Modal>
 
-                <Minter />
+                <Minter id="minter"/>
+
+                <Button 
+                colorScheme='blue' 
+                className='button'
+                onClick={sendNFTPopup}>
+                    Send NFT
+                </Button>
+
+                <Modal isOpen={isSendOpen} onClose={onSendClose}>
+                        
+                    <ModalOverlay />
+                    
+                    <ModalContent>
+                        <ModalHeader>Send NFT</ModalHeader>
+                        <ModalCloseButton />
+                        <ModalBody>
+                        </ModalBody>
+                        
+                        <ModalFooter>
+                            <Button onClick={onSendClose} colorScheme="blue">
+                                Close
+                            </Button>
+
+                        </ModalFooter>
+                        
+                    </ModalContent>
+
+                </Modal>
             </Box>
         </div>
     );

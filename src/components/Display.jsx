@@ -12,8 +12,11 @@ import { ethers } from "ethers";
 
 import ItemNFT from '../abis/itemContractABI.json';
 
+import "../assets/styles/MainArea.css";
+
 const Display = () => {
     const [NFTs, setNFTs] = useState([]);
+    const [isLoading, setIsLoading] = useState(false);
 
     //Use the json file contents to print out in "Display.jsx"
     //Obtain through IPFS
@@ -22,6 +25,7 @@ const Display = () => {
     }, []); 
 
     const getNFTs = async () => {
+        setIsLoading(true);
         try {
 
         const provider = new ethers.providers.Web3Provider(window.ethereum);
@@ -83,30 +87,40 @@ const Display = () => {
         } catch (error) {
             console.log("Error in retrieving NFTs: ", error);
         }
+        setTimeout(() => {        
+            setIsLoading(false);
+        }, 500);
+
     }
 
     return(
-        <Box position="relative">
+        <Box id="main-area-box">
             <Button
             colorScheme="blue"
-            onClick={getNFTs}>
+            onClick={getNFTs}
+            className="button"
+            id="load-button"
+            isLoading={isLoading}>
             Load NFTs
             </Button>
 
-            <SimpleGrid columns={3} spacing={4}>
-                {NFTs.map((nft, index) =>{
-                    return(
-                        <NFTImage
-                        key={index}
-                        name={nft.name}
-                        image={nft.image}
-                        stats={nft.stats}
-                        index={index+1}
-                        jsonData={nft.jsonData}
-                        />
-                    );
-                })}
-            </SimpleGrid>
+            <Box>
+                <SimpleGrid columns={3} spacing={4}>
+                    {NFTs.map((nft, index) =>{
+                        return(
+                            <NFTImage
+                            key={index}
+                            name={nft.name}
+                            image={nft.image}
+                            stats={nft.stats}
+                            index={index+1}
+                            jsonData={nft.jsonData}
+                            />
+                        );
+                    })}
+                </SimpleGrid>
+            </Box>
+
         </Box>
 
     );

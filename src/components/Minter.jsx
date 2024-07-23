@@ -10,54 +10,18 @@ import { ethers } from 'ethers';
 import ItemNFT from '../abis/itemContractABI.json';
 
 import { useURI } from '../back-end/URIContext';
+import { useWallet } from '../back-end/WalletContext';
 
 const Minter = () => {
 
-    const [account, setAccount] = useState(null);
     const [minting, setMinting] = useState(false);
     const { URI } = useURI();
+    const { account } = useWallet();
 
     // Get the URI of the token from the ItemForm
     // If there is no return on the ItemForm, use the default data.json file.
 
     // Connect to MetaMask wallet
-    const connectWallet = async () => {
-        if (window.ethereum){
-            try{
-                const accounts = await window.ethereum.request({method: 'eth_requestAccounts'});
-                    if(accounts.length > 0){
-                        await window.ethereum.request({method: "wallet_addEthereumChain",
-                            params: [
-                                {
-                                    chainId: "0x7e5", //"0x7a69", //chain is hexadecimal
-                                    chainName: "Ronin Saigon", //"Hardhat Local Network", 
-                                    nativeCurrency: {
-                                        name:  "RON", //"ETH",
-                                        symbol: "RON", //"ETH", 
-                                        decimals: 18,
-                                    },
-                                    rpcUrls: ["https://saigon-testnet.roninchain.com/rpc"],
-                                    blockExplorerUrls: ["https://saigon-app.roninchain.com/"],
-                                }
-                                ]
-                        }) 
-                        
-                        await window.ethereum.request({method: "wallet_switchEthereumChain",
-                            params: [{
-                                "chainId": "0x7e5" //"0x7a69" 
-                            }]
-                        })
-                    }
-                
-                setAccount(accounts[0]);
-                console.log("Connection successful: ", accounts[0])
-            } catch (error) {
-                console.error('Connecting to wallet did not work');
-            }
-        } else {
-            console.error('Please install MetaMask and try again');
-        }
-    }
 
     // Mint NFT function
     const mintNFT = async () => {
@@ -123,21 +87,13 @@ const Minter = () => {
 
 
     return (
-        <Box>
-            <Button 
-            colorScheme="blue"
-            onClick={connectWallet}>
-            Connect Wallet
-            </Button>
-
-            <Button
+        <Button
             colorScheme="blue"
             onClick={mintNFT}
-            >
+            className="button"
+            isLoading={minting}>
             Mint Item
-            </Button>
-        </Box>
-
+         </Button>
     );
 
 };
