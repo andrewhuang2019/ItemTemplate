@@ -1,4 +1,4 @@
-import React, {useEffect} from  "react";
+import React, {useEffect, useState} from  "react";
 import "../assets/styles/RightBar.css"
 import ItemForm from "./ItemForm.jsx";
 import Minter from "./Minter.jsx";
@@ -22,21 +22,35 @@ import { useWallet } from '../back-end/WalletContext';
 const RightBar = () => {
     const { isOpen: isMetadataOpen, onOpen: onMetadataOpen, onClose: onMetadataClose } = useDisclosure();
     const { isOpen: isSendOpen, onOpen: onSendOpen, onClose: onSendClose } = useDisclosure(); 
-    const { isConnecting, connectWallet } = useWallet();
+    const { isConnecting, isConnected, setIsConnected, connectWallet  } = useWallet();
+    const [ text, setText ] = useState('Please Connect Wallet!'); 
 
     useEffect(() => {
+
         checkMetaMaskAndNetwork()
+        window.ethereum.on('chainChanged', checkMetaMaskAndNetwork);
+        return () => {
+            if (ethereum.removeListener) {
+              ethereum.removeListener('chainChanged', checkMetaMaskAndNetwork);
+        }}
+    
     }, []);
 
     const checkMetaMaskAndNetwork = async () => {
+
         if(window.ethereum && window.ethereum.isMetaMask){
             const chainID = await window.ethereum.request({method: "eth_chainId"})
             if (chainID == "0x7e5"){
                 console.log("On correct network")
+                setIsConnected(true);
+                setText('Wallet Connected!')
             } else {
                 console.log("Not correct network")
+                setIsConnected(false);
+                setText('Please Connect Wallet!')
             }
         }
+
     };
 
     const metaDataPopup = async () => {
@@ -45,15 +59,18 @@ const RightBar = () => {
     }
 
     const sendNFTPopup = async () => {
+        checkMetaMaskAndNetwork();
         onSendOpen();
+    }
+
+    const checkIsConnected = () => {
+
     }
 
     return(
         <div className="right-bar-content">
             <Box className="button-container">
-                <Text>
-                    Wallet Not Connected!
-                </Text>
+                <Text>{text}</Text>
 
                 <Button 
                 colorScheme="blue"

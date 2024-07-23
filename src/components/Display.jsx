@@ -20,9 +20,6 @@ const Display = () => {
 
     //Use the json file contents to print out in "Display.jsx"
     //Obtain through IPFS
-    useEffect(() => {
-        getNFTs();
-    }, []); 
 
     const getNFTs = async () => {
         setIsLoading(true);
@@ -56,12 +53,16 @@ const Display = () => {
     
                         const tokenName = data.name;
                         const tokenStats = data.stats;
+                        const tokenDescription = data.description;
                         const tokenImage = data.image;
-    
+                        const tokenKeywords = data.keywords;
+
                         nfts.push({
                             name: tokenName,
                             image: tokenImage,
+                            description: tokenDescription,
                             stats: tokenStats,
+                            keywords: tokenKeywords,
                             jsonData: data
                         });
                     } else {
@@ -112,6 +113,7 @@ const Display = () => {
                             key={index}
                             name={nft.name}
                             image={nft.image}
+                            description={nft.description}
                             stats={nft.stats}
                             index={index+1}
                             jsonData={nft.jsonData}
