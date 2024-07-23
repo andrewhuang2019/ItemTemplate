@@ -4,12 +4,14 @@ import {
     FormControl,
     Input,
     Textarea,
-    Image
+    Image,
+    IconButton,
+    Box
 } from '@chakra-ui/react'
 
 import { useState, useRef } from 'react';
 
-import { Field, Form, Formik } from 'formik';
+import { Field, Form, Formik, FieldArray } from 'formik';
 
 import data from '../data.json'
 
@@ -24,6 +26,8 @@ const ItemForm = () => {
     const { setURI } = useURI();
 
     const [isLoading, setisLoading] = useState(false);
+
+    const [dynamicInputs, setDynamicInputs] = useState([]);
 
     const handleFileChange = (event) => {
         const chosenFile = event.currentTarget.files[0];
@@ -112,12 +116,14 @@ const ItemForm = () => {
             const updatedData = {
                 ...data,
                 name: values.name,
+                description: values.description,
                 stats: {
                     health: values.stats.health,
                     attack: values.stats.attack,
                     defense: values.stats.defense,
                     speed: values.stats.speed
                 },
+                keywords: values.keywords,
                 image: ""
             };
 
@@ -165,12 +171,15 @@ const ItemForm = () => {
             const updatedData = {
                 ...data,
                 name: values.name,
+                description: values.description,
                 stats: {
                     health: values.stats.health,
                     attack: values.stats.attack,
                     defense: values.stats.defense,
                     speed: values.stats.speed
                 },
+
+                keywords: values.keywords,
             };
 
             
@@ -187,9 +196,18 @@ const ItemForm = () => {
         setisLoading(false);
     };
 
+    const addInputField = () => {
+        setDynamicInputs([...dynamicInputs, {key: '', value: ''}])
+    }
+    const handleDynamicInputChange = (index, field, value) => {
+        const updatedInputs = [...dynamicInputs];
+        updatedInputs[index][field] = value;
+        setDynamicInputs(updatedInputs);
+    };
+
     return (
             <Formik
-            initialValues={data}
+            initialValues={{...data, keywords: ['']}}
             onSubmit={handleSubmit}
             >
                 {(props) => (
@@ -282,6 +300,46 @@ const ItemForm = () => {
                     </FormControl>)}
                 </Field>
 
+                {/*Added dynamic input fields here*/}
+
+                <FieldArray name="keywords">
+                    {({push, remove, form}) => (
+                        
+                        <Box>
+                            <FormLabel>Keywords</FormLabel>
+
+                            {/*Error is below*/}
+                            {form.values.keywords.map((keyword, index) => (
+                                <Box key={index}>
+                                    <FormLabel>Keyword {index}</FormLabel>
+                                    <Field name={`keywords[${index}]`}>
+                                        {({ field }) => (
+                                            <Input 
+                                            {...field} 
+                                            placeholder='keyword' 
+                                            size="sm" 
+                                            mb={2} />
+                                        )}
+                                    </Field>
+                                    <Button
+                                    onClick={() => remove(index)}>
+                                        Remove Keyword
+                                    </Button>
+                                </Box>
+                            ))}
+
+
+                            <Button
+                            onClick={() => push('')}>
+                                Add Keyword
+                            </Button>
+
+
+                        </Box>
+                    )}
+
+                </FieldArray>
+
 
             <Button isLoading={props.isSubmitting} type='submit' >
                     Submit Metadata
@@ -295,3 +353,29 @@ const ItemForm = () => {
 }
 
 export default ItemForm;
+
+/*                <Field name="keywords">
+                    {({field, form}) => (
+                    <FormControl isInvalid={form.errors.name && form.touched.name}>
+                        {
+                            
+                            dynamicInputs.map((input, index) => (
+                                <Box>
+                                    <FormLabel className="form-label">Additional Keyword {index+=1}</FormLabel>
+                                    <Input {...field } placeholder='keyword' size="sm"/>
+                                </Box>
+                            ))
+                        }
+
+                        <Button
+                        onClick={addInputField}>
+                            +
+                        </Button>
+
+                        {form.errors.name && form.touched.name && (
+                            <FormErrorMessage>{form.errors.name}</FormErrorMessage>
+                        )}
+
+                    </FormControl>)}
+                </Field>
+*/

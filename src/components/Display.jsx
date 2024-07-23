@@ -55,8 +55,9 @@ const Display = () => {
                         const tokenStats = data.stats;
                         const tokenDescription = data.description;
                         const tokenImage = data.image;
-                        const tokenKeywords = data.keywords;
+                        const tokenKeywords = data.keywords || [];
 
+                        //Has issues pushing the keywords to the class
                         nfts.push({
                             name: tokenName,
                             image: tokenImage,
@@ -115,6 +116,7 @@ const Display = () => {
                             image={nft.image}
                             description={nft.description}
                             stats={nft.stats}
+                            keywords={nft.keywords}
                             index={index+1}
                             jsonData={nft.jsonData}
                             />

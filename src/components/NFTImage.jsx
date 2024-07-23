@@ -15,14 +15,15 @@ import {
 
 import "../assets/styles/NFTImage.css"
 
-const NFTImage = ({name, image, description, stats, keywords, index, jsonData}) => {
+const NFTImage = ({name, image, description, stats, keywords, jsonData, index}) => {
     const { isOpen: isStatsOpen, onOpen: onStatsOpen, onClose: onStatsClose } = useDisclosure();
     const { isOpen: isJsonOpen, onOpen: onJsonOpen, onClose: onJsonClose } = useDisclosure();
-    console.log(`Rendering this image: ${name}, ${image}, ${stats}`);
+    //console.log(`Rendering this image: ${name}, ${image}, ${stats}`);
 
     const openJsonPage = () => {
         onJsonOpen(); 
         onStatsClose();
+        console.log(keywords);
     }
 
     return(
@@ -51,17 +52,26 @@ const NFTImage = ({name, image, description, stats, keywords, index, jsonData}) 
                         <ModalCloseButton />
                         <ModalBody>
                             <Box overflow="auto">
-                                <Text>Name: {name}</Text>
+                                <Text className="bolded-text">Name: </Text> 
+                                <Text>{name}</Text> 
 
-                                <Text>Description:</Text>
+                                <Text className="bolded-text">Description:</Text>
                                 <Text>"{description}"</Text>
 
+                                <Text className="bolded-text">Stats:</Text>
                                 <Text>Health: {stats.health}</Text>
                                 <Text>Attack: {stats.attack}</Text>
                                 <Text>Defense: {stats.defense}</Text>
                                 <Text>Speed: {stats.speed}</Text>
 
-                                <Text>Keywords: {keywords}</Text>         
+                                <Text className="bolded-text">Keywords: </Text>
+                                {keywords.length > 0 ? (
+                                    keywords.map((keyword, index) => (
+                                        <Text key={index}>{keyword}</Text>
+                                    ))
+                                ) : (
+                                    <Text>No Keywords In Item</Text>
+                                )}
                             </Box>
 
                         </ModalBody>

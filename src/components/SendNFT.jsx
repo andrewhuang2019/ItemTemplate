@@ -1,1 +1,5 @@
 // SendNFT.jsx
+
+const SendNFT = () => {
+    
+}
