@@ -1,19 +1,4 @@
-# ItemTemplate
-Creating an item template maker for Game Developers in the blockchain space. 
-
-## Updates:  
-TBD:  
-- Updating UI to look more presentable
-- Adding other types of tokens (components and devTokens)  
-- Updating Item Contract to allow players to mint NFTs  
-
-## Problem Statement:  
-
-Blockchain has been lacking in the gaming space in the past years, due to no real success in games that incorporate the technology. Game developers are hesitant to try using blockchain because of multiple reasons, including not understanding what the technology can bring to the industry.
-
-## Solution:  
-
-This project aims to help game developers incorporate blockchain into their games by abstracting code to create NFTs. These NFTS will have meta data that will synergize with many different games, allowing the NFTs to be able to be used intermodally by players. 
+# Quick Start:
 
 ## Dependencies:  
 
@@ -36,7 +21,7 @@ This should install all the dependencies. If it does not, then you can manually 
 4. The fourth is the Formik UI libraries. Install by typing:  
 `npm install formik --save` or `yarn add formik`  
 
-## Quick Start:  
+## Tutorial:  
 
 1. Get Metamask  
 
