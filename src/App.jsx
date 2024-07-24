@@ -6,12 +6,11 @@ import HomePage from './pages/HomePage';
 import { ChakraProvider } from '@chakra-ui/react'
 import { URIProvider } from './back-end/URIContext';
 import { WalletProvider } from './back-end/WalletContext';
-import theme from './assets/themes/theme';
 
 // Providers are used here so that they are global
 const App = () => {
     return (
-        <ChakraProvider theme={theme}>
+        <ChakraProvider>
             <WalletProvider>
                 <URIProvider>
                     <Router>

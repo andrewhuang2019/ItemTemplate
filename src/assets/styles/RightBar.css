@@ -1,3 +1,5 @@
+/* RightBar.css */
+
 .right-bar-content{
     background-image: url('../img/black-wood-background.png');
     background-size: cover;
@@ -6,7 +8,7 @@
 
     color: white;
     background-color: blue;
-    width: 20%;
+    width: 30%;
 
 }
 

@@ -1,3 +1,5 @@
+/* HomePage.css */
+
 .background{
     background-color: black;
     background-size:cover;
@@ -26,7 +28,7 @@
 
     color: white;
     background-color: white;
-    width: 60%;
+    width: 70%;
     overflow-y: auto;
 }
 

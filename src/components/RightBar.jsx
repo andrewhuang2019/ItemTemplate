@@ -25,7 +25,7 @@ import { useWallet } from '../back-end/WalletContext';
 const RightBar = () => {
     const { isOpen: isMetadataOpen, onOpen: onMetadataOpen, onClose: onMetadataClose } = useDisclosure();
     const { isOpen: isOptionsOpen, onOpen: onOptionsOpen, onClose: onOptionsClose } = useDisclosure(); 
-    const { isConnecting, isConnected, setIsConnected, connectWallet  } = useWallet();
+    const { account, isConnecting, isConnected, setIsConnected, connectWallet  } = useWallet();
     const [ text, setText ] = useState('Please Connect Wallet!'); 
 
     // checks Metamask when site is loaded in
@@ -39,7 +39,7 @@ const RightBar = () => {
               ethereum.removeListener('chainChanged', checkMetaMaskAndNetwork);
         }}
     
-    }, []);
+    }, [account, isConnected]);
 
     // checks to see if the user is connected to the Saigon network
     const checkMetaMaskAndNetwork = async () => {
@@ -47,13 +47,13 @@ const RightBar = () => {
         if(window.ethereum && window.ethereum.isMetaMask){
             const chainID = await window.ethereum.request({method: "eth_chainId"})
             if (chainID == "0x7e5"){
-                console.log("On correct network")
+                console.log("On correct network");
                 setIsConnected(true);
-                setText('Wallet Connected!')
+                setText(account ? 'Wallet Connected!' : 'Please Connect Wallet!');
             } else {
-                console.log("Not correct network")
+                console.log("Not correct network");
                 setIsConnected(false);
-                setText('Please Connect Wallet!')
+                setText('Please Connect Wallet!');
             }
         }
 
@@ -68,7 +68,7 @@ const RightBar = () => {
     // checks the network and then opens the options modal
     const optionsNFTPopup = async () => {
         checkMetaMaskAndNetwork();
-        onSendOpen();
+        onOptionsOpen();
     }
 
     return(
