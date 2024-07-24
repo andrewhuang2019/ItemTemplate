@@ -1,9 +1,7 @@
 {
     "name": "Item NFT",
     "description": "NFT Item for Game",
-    "image": {
-        "src": ""
-    },
+    "image": "",
     "model": {
         "src": "item model goes here"
     },

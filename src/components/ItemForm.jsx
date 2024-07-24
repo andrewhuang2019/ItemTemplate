@@ -65,8 +65,8 @@ const ItemForm = () => {
 
                 //updates updatedData image to be the IPFS one
                 //maybe return an image url where to find the data instead?
-                const imageURL = `${process.env.REACT_APP_GATEWAY_URL}/ipfs/${responseData.IpfsHash}`;
-
+                const imageURL = `ipfs://${responseData.IpfsHash}`;
+                
                 return imageURL;
 
             } else {
@@ -83,12 +83,13 @@ const ItemForm = () => {
             const response = await fetch(
                 "https://api.pinata.cloud/pinning/pinJSONToIPFS",
                 {
+  
                     method: "POST",
                     headers: {
                         Authorization: `Bearer ${process.env.REACT_APP_PINATA_JWT}`,
                         "Content-Type": "application/json",
                     },
-                    body: JSON.stringify(jsonData)
+                    body: `{"pinataOptions":{"cidVersion":1},"pinataMetadata":{"name":"metadata.json"},"pinataContent": ${JSON.stringify(jsonData)}}`
                 },                
             );
             if (response.ok){
@@ -196,15 +197,6 @@ const ItemForm = () => {
         setisLoading(false);
     };
 
-    const addInputField = () => {
-        setDynamicInputs([...dynamicInputs, {key: '', value: ''}])
-    }
-    const handleDynamicInputChange = (index, field, value) => {
-        const updatedInputs = [...dynamicInputs];
-        updatedInputs[index][field] = value;
-        setDynamicInputs(updatedInputs);
-    };
-
     return (
             <Formik
             initialValues={{...data, keywords: ['']}}
@@ -224,7 +216,7 @@ const ItemForm = () => {
                     </FormControl>)}
                 </Field>
 
-                <Field name="image.src">
+                <Field name="image">
                     {({field, form}) => (
                     <FormControl isInvalid={form.errors.name && form.touched.name}>
                         <FormLabel className="form-label">image file</FormLabel>

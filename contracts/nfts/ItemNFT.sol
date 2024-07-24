@@ -23,6 +23,7 @@ contract ItemNFT is ERC721, ERC721URIStorage, ERC721Burnable, Ownable {
     function safeMint(address to, string memory uri) 
     public  
     onlyOwner
+    returns(address)
     {
         uint256 tokenId = _nextTokenId;
         _safeMint(to, tokenId);
@@ -30,6 +31,7 @@ contract ItemNFT is ERC721, ERC721URIStorage, ERC721Burnable, Ownable {
         _nextTokenId++;
 
         emit Mint(to, tokenId, uri);
+        return to;
     }
 
     function tokenURI(uint256 tokenId)

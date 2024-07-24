@@ -61,6 +61,7 @@ const Minter = () => {
                 const currentToken = await contract.getTotalTokens();
 
                 // this is probably not passing through 
+                console.log("Minting NFT to: ", account);
                 const tx = await contract.safeMint(account, tokenURI);
                 await tx.wait();
 
@@ -68,7 +69,7 @@ const Minter = () => {
                 
                 const checkURI = await contract.tokenURI(newTokenId);
 
-                console.log("NFT Minted to:", tx.address);
+                console.log("NFT Minted to:", tx.to);
                 console.log("NFT URI: ", checkURI);
 
             } catch (error) {

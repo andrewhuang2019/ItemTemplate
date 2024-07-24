@@ -26,6 +26,8 @@ const NFTImage = ({name, image, description, stats, keywords, jsonData, index}) 
         console.log(keywords);
     }
 
+    //${process.env.REACT_APP_GATEWAY_URL}
+
     return(
         <Box
         borderWidth="1px"
@@ -34,7 +36,7 @@ const NFTImage = ({name, image, description, stats, keywords, jsonData, index}) 
         onClick={onStatsOpen}
         >
             <Image
-            src={image}
+            src={image.replace("ipfs://", `${process.env.REACT_APP_GATEWAY_URL}/ipfs/`)}
             alt={`NFT ${name}`} />
 
             <Box className="nft-text-box">
