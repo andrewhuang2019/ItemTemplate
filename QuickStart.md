@@ -76,7 +76,9 @@ Create a file in the base directory of the project, named ".env". It should appe
 
 Inside of the .env file, copy and paste the code below:  
 
-`code here`  
+`REACT_APP_PINATA_JWT=`
+`REACT_APP_CONTRACT_ADDRESS=`
+`REACT_APP_GATEWAY_URL=`
 
 (Picture here)  
 
