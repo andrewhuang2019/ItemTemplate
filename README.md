@@ -15,6 +15,8 @@ Blockchain has been lacking in the gaming space in the past years, due to no rea
 
 This project aims to help game developers incorporate blockchain into their games by abstracting code to create NFTs. These NFTS will have meta data that will synergize with many different games, allowing the NFTs to be able to be used intermodally by players. 
 
+You can find the tutorial [here](QuickStart.md).  
+
 ## Dependencies:  
 
 The project has many dependencies which it uses. Make your way to the root directory of the project, and use the terminal or other resources to install the dependencies. You can check to see if you have something installed by typing in the respective name and `--version`. Ex:  
