@@ -1,3 +1,5 @@
+// WalletContext.js
+
 import React, {createContext, useContext, useState } from 'react'
 
 const WalletContext = createContext();
@@ -11,23 +13,22 @@ export const WalletProvider = ({children}) => {
     // Connects wallet to Ronin Saigon network.
     const connectWallet = async () => {
         setIsConnecting(true);
-        if(window.ethereum) {
-            //check here to see if the wallet's chainId is the same as "0x7e5"
-            setIsConnected(true);
-        }
 
         if (window.ethereum){
             try{
+                // sends a request to check accounts
                 const accounts = await window.ethereum.request({method: 'eth_requestAccounts'});
+
+                    // if there are more than 0 accounts, then add network
                     if(accounts.length > 0){
                         await window.ethereum.request({method: "wallet_addEthereumChain",
                             params: [
                                 {
-                                    chainId: "0x7e5", //"0x7a69", //chain is hexadecimal
-                                    chainName: "Ronin Saigon", //"Hardhat Local Network", 
+                                    chainId: "0x7e5", 
+                                    chainName: "Ronin Saigon Testnet", 
                                     nativeCurrency: {
-                                        name:  "RON", //"ETH",
-                                        symbol: "RON", //"ETH", 
+                                        name:  "RON", 
+                                        symbol: "RON", 
                                         decimals: 18,
                                     },
                                     rpcUrls: ["https://saigon-testnet.roninchain.com/rpc"],
@@ -36,16 +37,19 @@ export const WalletProvider = ({children}) => {
                                 ]
                         }) 
                         
+                        // if network is already added, switch to it
                         await window.ethereum.request({method: "wallet_switchEthereumChain",
                             params: [{
-                                "chainId": "0x7e5" //"0x7a69" 
+                                "chainId": "0x7e5" 
                             }]
                         })
                     }
+                    // above statements don't do anything if user already has network and is connected to it
                 
                 setAccount(accounts[0]);
                 setIsConnected(true);
-                console.log("Connection successful: ", accounts[0])
+                console.log("Connection successful: ", accounts[0]);
+
             } catch (error) {
                 console.error('Connecting to wallet did not work');
             }
@@ -57,6 +61,7 @@ export const WalletProvider = ({children}) => {
         }, 500)
     }
     
+    // returns different states to check if wallet is connected
     return(
         <WalletContext.Provider value={{account, isConnecting, isConnected, setIsConnected, connectWallet}}>
         {children}

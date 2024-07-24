@@ -1,10 +1,11 @@
+// NFTImage.jsx
+
 import {
     Box,
     Image,
     Text,
     useDisclosure, 
     Modal,
-    ModalOverlay,
     ModalContent,
     ModalHeader,
     ModalFooter,
@@ -18,16 +19,15 @@ import "../assets/styles/NFTImage.css"
 const NFTImage = ({name, image, description, stats, keywords, jsonData, index}) => {
     const { isOpen: isStatsOpen, onOpen: onStatsOpen, onClose: onStatsClose } = useDisclosure();
     const { isOpen: isJsonOpen, onOpen: onJsonOpen, onClose: onJsonClose } = useDisclosure();
-    //console.log(`Rendering this image: ${name}, ${image}, ${stats}`);
 
+    // closes stats page and opens json page
     const openJsonPage = () => {
         onJsonOpen(); 
         onStatsClose();
         console.log(keywords);
     }
 
-    //${process.env.REACT_APP_GATEWAY_URL}
-
+    // renders each NFT card
     return(
         <Box
         borderWidth="1px"
@@ -35,9 +35,10 @@ const NFTImage = ({name, image, description, stats, keywords, jsonData, index}) 
         overflow="hidden"
         onClick={onStatsOpen}
         >
+            {/*Creates image, with an alternative if the image is missing*/}
             <Image
             src={image.replace("ipfs://", `${process.env.REACT_APP_GATEWAY_URL}/ipfs/`)}
-            alt={`NFT ${name}`} />
+            alt={`Missing Image For: ${name}`} />
 
             <Box className="nft-text-box">
                 <Text>
@@ -48,6 +49,7 @@ const NFTImage = ({name, image, description, stats, keywords, jsonData, index}) 
                 </Text>
             </Box>
 
+            {/*Prints out list of stats*/}
             <Modal isOpen={isStatsOpen} onClose={onStatsClose}>
                     <ModalContent>
                         <ModalHeader>NFT Stats:</ModalHeader>
@@ -88,6 +90,7 @@ const NFTImage = ({name, image, description, stats, keywords, jsonData, index}) 
                     </ModalContent>
             </Modal>
 
+            {/*Prints out raw json file*/}
             <Modal isOpen={isJsonOpen} onClose={onJsonClose}>
                     <ModalContent>
                         <ModalHeader>Raw Json:</ModalHeader>

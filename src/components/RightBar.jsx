@@ -1,3 +1,5 @@
+// RightBar.jsx
+
 import React, {useEffect, useState} from  "react";
 import "../assets/styles/RightBar.css"
 import ItemForm from "./ItemForm.jsx";
@@ -22,10 +24,12 @@ import { useWallet } from '../back-end/WalletContext';
 
 const RightBar = () => {
     const { isOpen: isMetadataOpen, onOpen: onMetadataOpen, onClose: onMetadataClose } = useDisclosure();
-    const { isOpen: isSendOpen, onOpen: onSendOpen, onClose: onSendClose } = useDisclosure(); 
+    const { isOpen: isOptionsOpen, onOpen: onOptionsOpen, onClose: onOptionsClose } = useDisclosure(); 
     const { isConnecting, isConnected, setIsConnected, connectWallet  } = useWallet();
     const [ text, setText ] = useState('Please Connect Wallet!'); 
 
+    // checks Metamask when site is loaded in
+    // sets up a listener to check when the network changes
     useEffect(() => {
 
         checkMetaMaskAndNetwork()
@@ -37,6 +41,7 @@ const RightBar = () => {
     
     }, []);
 
+    // checks to see if the user is connected to the Saigon network
     const checkMetaMaskAndNetwork = async () => {
 
         if(window.ethereum && window.ethereum.isMetaMask){
@@ -54,18 +59,16 @@ const RightBar = () => {
 
     };
 
+    // checks the network and then opens the Metadata modal
     const metaDataPopup = async () => {
         checkMetaMaskAndNetwork();
         onMetadataOpen();
     }
 
-    const sendNFTPopup = async () => {
+    // checks the network and then opens the options modal
+    const optionsNFTPopup = async () => {
         checkMetaMaskAndNetwork();
         onSendOpen();
-    }
-
-    const checkIsConnected = () => {
-
     }
 
     return(
@@ -81,6 +84,7 @@ const RightBar = () => {
                 Connect Wallet
                 </Button>
 
+                {/*Button opens the modal below which users can change metadata with*/}
                 <Button 
                 colorScheme="blue"
                 onClick={metaDataPopup}
@@ -111,16 +115,18 @@ const RightBar = () => {
 
                 </Modal>
 
+                {/*Minter including the button*/}
                 <Minter id="minter"/>
 
+                {/*Button opens the modal below which users can use different NFT options*/}
                 <Button 
                 colorScheme='blue' 
                 className='button'
-                onClick={sendNFTPopup}>
+                onClick={optionsNFTPopup}>
                     NFT Options
                 </Button>
 
-                <Modal isOpen={isSendOpen} onClose={onSendClose}>
+                <Modal isOpen={isOptionsOpen} onClose={onOptionsClose}>
                         
                     <ModalOverlay />
                     
@@ -132,7 +138,7 @@ const RightBar = () => {
                         </ModalBody>
                         
                         <ModalFooter>
-                            <Button onClick={onSendClose} colorScheme="blue">
+                            <Button onClick={onOptionsClose} colorScheme="blue">
                                 Close
                             </Button>
 

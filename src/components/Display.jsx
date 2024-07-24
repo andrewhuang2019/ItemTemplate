@@ -1,4 +1,6 @@
-import React, { useState, useEffect } from  "react";
+// Display.jsx
+
+import React, { useState } from  "react";
 
 import { 
     Button, 
@@ -18,9 +20,7 @@ const Display = () => {
     const [NFTs, setNFTs] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
 
-    //Use the json file contents to print out in "Display.jsx"
-    //Obtain through IPFS
-
+    // function to get the NFTs that the contract has minted.
     const getNFTs = async () => {
         setIsLoading(true);
         try {
@@ -41,6 +41,7 @@ const Display = () => {
         let nfts = [];
         for (let i = 1; i < totalTokens.toNumber(); i++) {
             try {
+
                 // fetch/parse the json data that was received from that URI 
                 const tokenURI = await contract.tokenURI(i);
                 const response = await fetch(tokenURI);
@@ -56,8 +57,7 @@ const Display = () => {
                         const tokenDescription = data.description;
                         const tokenImage = data.image;
                         const tokenKeywords = data.keywords || [];
-
-                        //Has issues pushing the keywords to the class
+                        
                         nfts.push({
                             name: tokenName,
                             image: tokenImage,
@@ -77,13 +77,9 @@ const Display = () => {
             } catch (error) {
                 console.log(`Error in getting the data from token ${i} from IPFS: `, error)
             }
-
-        // Call a NFTImage and put in the different attributes for each.
-
-        // return the list of data. 
-
         }
 
+        //sets the state nft to use in return
         setNFTs(nfts);
 
         } catch (error) {
@@ -95,6 +91,8 @@ const Display = () => {
 
     }
 
+    // Renders the components
+    // Each card is rendered depending on the metadata
     return(
         <Box id="main-area-box">
             <Button

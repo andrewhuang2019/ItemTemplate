@@ -1,3 +1,5 @@
+// App.jsx
+
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import HomePage from './pages/HomePage';
@@ -6,6 +8,7 @@ import { URIProvider } from './back-end/URIContext';
 import { WalletProvider } from './back-end/WalletContext';
 import theme from './assets/themes/theme';
 
+// Providers are used here so that they are global
 const App = () => {
     return (
         <ChakraProvider theme={theme}>

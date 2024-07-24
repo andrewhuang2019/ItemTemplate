@@ -1,3 +1,5 @@
+// ItemForm.jsx
+
 import {
     Button,
     FormLabel,
@@ -5,7 +7,6 @@ import {
     Input,
     Textarea,
     Image,
-    IconButton,
     Box
 } from '@chakra-ui/react'
 
@@ -27,8 +28,7 @@ const ItemForm = () => {
 
     const [isLoading, setisLoading] = useState(false);
 
-    const [dynamicInputs, setDynamicInputs] = useState([]);
-
+    // changes the image file contents and handles how that works.
     const handleFileChange = (event) => {
         const chosenFile = event.currentTarget.files[0];
         if (chosenFile){
@@ -41,12 +41,15 @@ const ItemForm = () => {
         }
     }
 
+    // pins the image file to IPFS via Pinata
     const pinImageToIPFS = async (file) => {
 
         try {
+            //create form data
             const formData = new FormData();
             formData.append("file", file);
 
+            //obtain response from the fetch call (pinning form data to ipfs)
             const response = await fetch(
                 "https://api.pinata.cloud/pinning/pinFileToIPFS",
                 {
@@ -59,12 +62,11 @@ const ItemForm = () => {
 
             );
 
+            //if the response worked, then returns ipfs://CID
             if (response.ok){
                 const responseData = await response.json();
                 console.log("Image pinned successfully", responseData);
 
-                //updates updatedData image to be the IPFS one
-                //maybe return an image url where to find the data instead?
                 const imageURL = `ipfs://${responseData.IpfsHash}`;
                 
                 return imageURL;
@@ -77,9 +79,12 @@ const ItemForm = () => {
         }
     }
 
+    // pins JSON file to IPFS via Pinata
     const pinJsonToIPFS = async (jsonData) => {
         try {
-            // issue is occurring here.
+            
+            //obtain response from the fetch call (pinning json data to ipfs)
+            //renames the file "metadata" so that image appears in metamask
             const response = await fetch(
                 "https://api.pinata.cloud/pinning/pinJSONToIPFS",
                 {
@@ -92,12 +97,13 @@ const ItemForm = () => {
                     body: `{"pinataOptions":{"cidVersion":1},"pinataMetadata":{"name":"metadata.json"},"pinataContent": ${JSON.stringify(jsonData)}}`
                 },                
             );
+
+            // if the response works, then return the CID for the json file. 
             if (response.ok){
 
                 const returnedData = await response.json();
                 console.log("JSON Pinned Successfully: ", returnedData);
 
-                //CID
                 return returnedData.IpfsHash;
 
             } else {
@@ -109,11 +115,15 @@ const ItemForm = () => {
         }
     }
 
+    // handles the submission of the form by getting the right data on ipfs
     const handleSubmit = async (values, actions) => {
         setisLoading(true);
+
+        // if the file exists, then create a new file reader.
         if (file) {
             const reader = new FileReader();
 
+            // form values are added to the data initially
             const updatedData = {
                 ...data,
                 name: values.name,
@@ -134,28 +144,22 @@ const ItemForm = () => {
                 //Try to send the data to IPFS system and get the CID back from them. 
                 try {
 
-                    // now i need to get the updated data and pin it to the website as well.
-                    // save the resulting url and pass that in as the minting uri 
-                    // upload the image to ipfs
+                    // pin image and wait to get the result. Store it in the updatedData variable
                     updatedData.image = await pinImageToIPFS(file);
 
-                    // store the image's url link in the json file
-                    // upload the json file to ipfs
-                    // fetch the json file
+                    // pin json and wait to get the result. Store it in the jsonCID variable. 
                     const jsonCID = await pinJsonToIPFS(updatedData);
 
                     console.log("Json data successfully pinned: ", jsonCID);
 
-                    //potentially change to the full link?
+                    // set the URI to be the full link to the data using a Pinata gateway 
                     setURI(`${process.env.REACT_APP_GATEWAY_URL}/ipfs/${jsonCID}`);
-
-                    // get the src of the image from the json file and pass that into gallery or smth. <- do in the gallery section
 
                 } catch (error) {
                     console.error("Error uploading to IPFS:", error);
                 }
 
-
+                // after 1 second, show the full json as an alert
                 setTimeout(() =>{
                     alert(JSON.stringify(updatedData, null, 2))
                     actions.setSubmitting(false)
@@ -169,6 +173,7 @@ const ItemForm = () => {
             reader.readAsDataURL(file);
         } else {
             
+            // if there is no file attached, then do not change the image url, just the JSON CID
             const updatedData = {
                 ...data,
                 name: values.name,
@@ -183,6 +188,9 @@ const ItemForm = () => {
                 keywords: values.keywords,
             };
 
+            const jsonCID = await pinJsonToIPFS(updatedData);
+
+            setURI(`${process.env.REACT_APP_GATEWAY_URL}/ipfs/${jsonCID}`);
             
             setTimeout(() =>{
                 alert(JSON.stringify(updatedData, null, 2))
@@ -197,6 +205,7 @@ const ItemForm = () => {
         setisLoading(false);
     };
 
+    // render the form using Formik
     return (
             <Formik
             initialValues={{...data, keywords: ['']}}
@@ -292,7 +301,10 @@ const ItemForm = () => {
                     </FormControl>)}
                 </Field>
 
-                {/*Added dynamic input fields here*/}
+                {/*
+                Added dynamic form inputs using FieldArray
+                This allows for keywords to be added/removed
+                */}
 
                 <FieldArray name="keywords">
                     {({push, remove, form}) => (
@@ -300,7 +312,6 @@ const ItemForm = () => {
                         <Box>
                             <FormLabel>Keywords</FormLabel>
 
-                            {/*Error is below*/}
                             {form.values.keywords.map((keyword, index) => (
                                 <Box key={index}>
                                     <FormLabel>Keyword {index}</FormLabel>
@@ -320,7 +331,6 @@ const ItemForm = () => {
                                 </Box>
                             ))}
 
-
                             <Button
                             onClick={() => push('')}>
                                 Add Keyword
@@ -333,7 +343,7 @@ const ItemForm = () => {
                 </FieldArray>
 
 
-            <Button isLoading={props.isSubmitting} type='submit' >
+            <Button isLoading={isLoading} type='submit' >
                     Submit Metadata
             </Button>  
         </Form>
@@ -345,29 +355,3 @@ const ItemForm = () => {
 }
 
 export default ItemForm;
-
-/*                <Field name="keywords">
-                    {({field, form}) => (
-                    <FormControl isInvalid={form.errors.name && form.touched.name}>
-                        {
-                            
-                            dynamicInputs.map((input, index) => (
-                                <Box>
-                                    <FormLabel className="form-label">Additional Keyword {index+=1}</FormLabel>
-                                    <Input {...field } placeholder='keyword' size="sm"/>
-                                </Box>
-                            ))
-                        }
-
-                        <Button
-                        onClick={addInputField}>
-                            +
-                        </Button>
-
-                        {form.errors.name && form.touched.name && (
-                            <FormErrorMessage>{form.errors.name}</FormErrorMessage>
-                        )}
-
-                    </FormControl>)}
-                </Field>
-*/

@@ -1,21 +1,15 @@
-
-import { 
-    ChakraProvider, 
-    Button
-} from "@chakra-ui/react";
+// HomePage.js
 
 import React from "react";
 import "../assets/styles/HomePage.css"
 import LeftBar from "../components/LeftBar"
 import RightBar from "../components/RightBar"
 import TopBar from "../components/TopBar";
-import Minter from "../components/Minter";
 import MainArea from "../components/MainArea";
 
 const HomePage = () => {
 
-
-
+    // main bars on the page are rendered
     return (
         <div className="background">
             <TopBar />
