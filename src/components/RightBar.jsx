@@ -2,6 +2,7 @@ import React, {useEffect, useState} from  "react";
 import "../assets/styles/RightBar.css"
 import ItemForm from "./ItemForm.jsx";
 import Minter from "./Minter.jsx";
+import SendNFT from "./SendNFT.jsx";
 
 import {
     Button,
@@ -116,7 +117,7 @@ const RightBar = () => {
                 colorScheme='blue' 
                 className='button'
                 onClick={sendNFTPopup}>
-                    Send NFT
+                    NFT Options
                 </Button>
 
                 <Modal isOpen={isSendOpen} onClose={onSendClose}>
@@ -127,6 +128,7 @@ const RightBar = () => {
                         <ModalHeader>Send NFT</ModalHeader>
                         <ModalCloseButton />
                         <ModalBody>
+                            <SendNFT />
                         </ModalBody>
                         
                         <ModalFooter>

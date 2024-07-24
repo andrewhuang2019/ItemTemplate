@@ -5,6 +5,7 @@
       "lastModificationDate": 1720722698012,
       "contentHash": "c6375ef25e84c90b3d15f9ec4eef218f",
       "sourceName": "@openzeppelin/contracts/token/ERC20/ERC20.sol",
+      "sourceName": "contracts/MyContract.sol",
       "solcConfig": {
         "version": "0.8.24",
         "settings": {
