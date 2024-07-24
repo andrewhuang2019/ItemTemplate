@@ -94,34 +94,44 @@ const Display = () => {
     // Renders the components
     // Each card is rendered depending on the metadata
     return(
-        <Box id="main-area-box">
+        <Box 
+        display="flex"
+        flexDirection="column"
+        alignItems="center"
+        padding={4} // Optional: Add some padding around the grid
+        width="100%"
+        >
             <Button
             colorScheme="blue"
             onClick={getNFTs}
             className="button"
             id="load-button"
-            isLoading={isLoading}>
+            isLoading={isLoading}
+            width={{base: "50%", sm: "30%", md: "25%", lg: "20%"}}>
             Load NFTs
             </Button>
-
-            <Box>
-                <SimpleGrid columns={3} spacing={4}>
-                    {NFTs.map((nft, index) =>{
-                        return(
-                            <NFTImage
-                            key={index}
-                            name={nft.name}
-                            image={nft.image}
-                            description={nft.description}
-                            stats={nft.stats}
-                            keywords={nft.keywords}
-                            index={index+1}
-                            jsonData={nft.jsonData}
-                            />
-                        );
-                    })}
-                </SimpleGrid>
-            </Box>
+            
+            <SimpleGrid 
+            columns={{ base: 1, sm: 2, md: 3, lg: 4}} 
+            spacing={4} 
+            width="100%"
+            justifyContent="center"
+            alignItems="center">
+                {NFTs.map((nft, index) =>{
+                    return(
+                        <NFTImage
+                        key={index}
+                        name={nft.name}
+                        image={nft.image}
+                        description={nft.description}
+                        stats={nft.stats}
+                        keywords={nft.keywords}
+                        index={index+1}
+                        jsonData={nft.jsonData}
+                        />
+                    );
+                })}
+            </SimpleGrid>
 
         </Box>
 
