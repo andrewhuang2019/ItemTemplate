@@ -30,15 +30,15 @@ The first step to running this project is to have a Metamask account.
 The link to install Metamask is [here](https://metamask.io/download/).  
 Once you install Metamask, log in through the extension: 
 
-(Picture here)
+![metamask](/docs/images/metamask/metamask.png)
 
 Take note of both the wallet address and the private key (do not share!): 
 
-(Picture here)  
+![metamask-account](/docs/images/metamask/metamask-account-details.png)
 
 Click the three dots in the top left, go to the settings and enable "Display NFT media" under the "Security & privacy" tab.  
 
-(Pictures here)  
+![metamask-private-key](/docs/images/metamask/metamask-private-key.png)
 
 2. **Create a Pinata Account**
 
@@ -46,19 +46,19 @@ The second step is to create a Pinata account to store the metadata which each N
 The link to the website is [here](https://www.pinata.cloud/).  
 Create your account on the top right, and head to the web app to get started!  
 
-(Picture)  
+![pinata-home](/docs/images/pinata/pinata.png)  
 
 Once you are done with creating your account and signing in, you want to make an API key.  
 
-(Picture)  
+![pinata-keys](/docs/images/pinata/pinata-keys.png)  
 
-(Picture)  
+![pinata-create-keys](/docs/images/pinata/create-pinata-api-key.png)   
 
 Save all the information of the API key.  
 
 Once that is finished, go to "Gateways" on the left and create a new gateway.  
 
-(Picture)  
+![gateway](/docs/images/pinata/gateway.png)     
 
 Save the domain of the gateway for later use.  
 
