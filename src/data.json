@@ -1,0 +1,15 @@
+{
+    "name": "Item NFT",
+    "description": "NFT Item for Game",
+    "image": "",
+    "model": {
+        "src": "item model goes here"
+    },
+    "stats": {
+        "health": 0,
+        "attack": 0,
+        "defense": 0,
+        "speed": 0
+    },
+    "keywords": []
+}

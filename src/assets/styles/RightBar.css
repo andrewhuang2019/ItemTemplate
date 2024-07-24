@@ -1,0 +1,26 @@
+/* RightBar.css */
+
+.right-bar-content{
+    background-image: url('../img/black-wood-background.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+
+    color: white;
+    background-color: blue;
+    width: 30%;
+
+}
+
+.button-container {
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    width: 100%;
+    height: 80%;
+    
+    
+}
+

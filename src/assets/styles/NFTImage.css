@@ -1,0 +1,11 @@
+/* NFTImage.css */
+
+.nft-text-box{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.bolded-text {
+    font-weight: bold;
+}

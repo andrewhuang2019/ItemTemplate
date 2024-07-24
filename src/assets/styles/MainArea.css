@@ -1,0 +1,39 @@
+/* MainArea.css */
+
+#main-area-box{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+/*
+.nft-text {
+    font-size: 6px;
+}
+
+
+@media(min-width: 400px){
+    .nft-text {
+        font-size: 9px;
+    }
+}
+
+@media(min-width: 500px){
+    .nft-text {
+        font-size: 11px;
+    }
+}
+
+@media(min-width: 780px){
+    .nft-text {
+        font-size: 13px;
+    }
+}
+
+@media(min-width: 900px){
+    .nft-text {
+        font-size: 16px;
+    }
+}*/
