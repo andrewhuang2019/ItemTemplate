@@ -16,15 +16,22 @@ import { Field, Form, Formik } from 'formik';
 
 import { ethers } from 'ethers';
 
+import ItemNFT from '../abis/itemContractABI.json';
+
+const recipient = "0x50d96e6258b432292c1D803f03974D698677211E";
+
 const SendNFT = () => {
 
     const [obtainTokenId, setObtainTokenId] = useState(null);
+    const [loadObtain, setLoadObtain] = useState(false);
+    const [loadSend, setLoadSend] = useState(false);
     const [recipient, setRecipient] = useState(null);
     const [sendTokenId, setSendTokenId] = useState(null);
 
     const { account } = useWallet();
 
     const obtainNFT = async (values) => {
+        setLoadObtain(true);
         if (account) {
             try {
                 const wasAdded = await window.ethereum.request({
@@ -36,24 +43,52 @@ const SendNFT = () => {
                         tokenId: values.obtain.toString()
                     }
                 }})
-    
+
+                if (wasAdded){
+                    console.log("NFT added to Metamask!");
+                }
             } catch (error) {
                 console.log("Error in obtaining the NFT: ", error);
             }
-            if (wasAdded){
-                console.log("NFT added to Metamask!");
-            }
+
         }
+        setLoadObtain(false);
     }
 
-    const sendNFT = (values, actions) => {
+    const sendNFT = async (values) => {
+        setLoadSend(true);
 
+        try {
+
+            const provider = new ethers.providers.Web3Provider(window.ethereum);
+
+            await provider.send("eth_requestAccounts", []);
+            const signer = provider.getSigner();
+
+            const from = await signer.getAddress();
+            const contract = new ethers.Contract(
+                process.env.REACT_APP_CONTRACT_ADDRESS,
+                ItemNFT.abi,
+                signer
+            )
+
+            const transaction = await contract.transferFrom(from, values.recipient, values.tokenId)
+            await transaction.wait();
+            console.log("NFT Sent Successfully")
+            setRecipient(values.recipient)
+        } catch (error) {
+            console.log("Error in sending the NFT: ", error);
+        }
+
+
+        setLoadSend(false);
     }
 
     return(
         <Box>
 
             <Formik
+            initialValues={{obtain: ""}}
             onSubmit={obtainNFT}>
 
                 <Form>
@@ -72,7 +107,8 @@ const SendNFT = () => {
 
                     </Field>
 
-                    <Button type="submit">
+                    <Button type="submit"
+                    isLoading={loadObtain}>
                         Obtain NFT
                     </Button>
                 
@@ -82,6 +118,7 @@ const SendNFT = () => {
 
 
                 <Formik
+                initialValues={{recipient:"", tokenId: ''}}
                 onSubmit={sendNFT}>
 
                     <Form>
@@ -113,7 +150,8 @@ const SendNFT = () => {
                             
                         </Field>
 
-                        <Button type="submit">
+                        <Button type="submit"
+                        isLoading={loadSend}>
                             Send NFT
                         </Button>
                     
