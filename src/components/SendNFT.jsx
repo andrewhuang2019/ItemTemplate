@@ -102,8 +102,8 @@ const SendNFT = () => {
                         {({field, form}) => (
                         <FormControl isInvalid={form.errors.name && form.touched.name}>
 
-                            <FormLabel className="form-label">Obtain NFT by tokenId (index): </FormLabel>
-                            <Input {...field } type="number" placeholder='tokenId' size="sm"/>
+                            <FormLabel className="form-label">Obtain NFT by tokenID: </FormLabel>
+                            <Input {...field } type="number" placeholder='tokenID' size="sm"/>
 
                             {form.errors.name && form.touched.name && (
                                 <FormErrorMessage>{form.errors.name}</FormErrorMessage>
@@ -132,7 +132,7 @@ const SendNFT = () => {
                         {({field, form}) => (
                         <FormControl isInvalid={form.errors.name && form.touched.name}>
 
-                            <FormLabel mt={10} className="form-label">Obtain NFT by tokenId (index): </FormLabel>
+                            <FormLabel mt={10} className="form-label">Send NFT by tokenID: </FormLabel>
                             <Input {...field } placeholder='recipient' size="sm"/>
 
                             {form.errors.name && form.touched.name && (
@@ -146,7 +146,7 @@ const SendNFT = () => {
                         {({field, form}) => (
                         <FormControl isInvalid={form.errors.name && form.touched.name}>
 
-                            <Input {...field } placeholder='tokenId' size="sm"/>
+                            <Input {...field } placeholder='tokenID' size="sm"/>
 
                             {form.errors.name && form.touched.name && (
                                 <FormErrorMessage>{form.errors.name}</FormErrorMessage>

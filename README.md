@@ -1,7 +1,7 @@
 # ItemTemplate
 Creating an item template maker for Game Developers in the blockchain space. 
 
-You can find the tutorial [here](QuickStart.md).  
+You can find the quick-start [here](QuickStart.md).  
 
 ## Updates:  
 TBD:  
