@@ -68,7 +68,7 @@ Save the domain of the gateway for later use.
 
 The release is posted on the right side of the GitHub to get the required files to run the project.
 
-(Picture here)  
+![release](/docs/images/release.png)   
 
 4. **Install necessary dependencies**
 
@@ -124,6 +124,10 @@ The terminal should return the address for the contract, so keep track of it.
 
 If you want to check out the contract that is deployedm, it can be seen in the [block explorer](https://saigon-app.roninchain.com/). You just need to copy and paste the contract address above to see it!  
 
+After the contract is deployed, head to the "artifacts/contracts/nfts/ItemNFT.json" and copy and paste the entire contents of "ItemNFT.json" into "src/abis/itemContractABI.json". Replace anything within "itemContractABI.json" with the contents of "ItemNFT.json".  
+
+(Pictures here)
+
 10. **Fill out env file:**  
 
 Paste your Pinata JWT from the key that you made, the contract address, and the gateway URL.  
@@ -135,6 +139,8 @@ The gateway URL should start with "https://".
 11. **Run app again**  
 
 With all the preliminary steps out of the way, you can run the app now!  
+
+Redeploy the app using `npm start`, and all of the functions should work.  
 
 There are 7 main parts to the app:  
 1. Connect Wallet - this connects your wallet to the network and determines which account will mint an NFT.  
