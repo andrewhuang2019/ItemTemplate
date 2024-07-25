@@ -24,6 +24,8 @@ This should install all the dependencies. If it does not, then you can manually 
 
 ## Tutorial:  
 
+Note: all of the information I used are a part of a developer account. Do not share your private keys/personal information!  
+
 1. **Get Metamask**  
 
 The first step to running this project is to have a Metamask account.  
