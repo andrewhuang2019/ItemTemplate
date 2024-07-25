@@ -114,14 +114,14 @@ In the terminal at the root folder, copy and paste the code below to deploy the 
 
 The terminal should return the address for the contract, so keep track of it.  
 
-(terminal picture)  
+![deployed-contract](/docs/images/deployedcontract.png)  
 
 If you want to check out the contract that is deployedm, it can be seen in the [block explorer](https://saigon-app.roninchain.com/). You just need to copy and paste the contract address above to see it!  
 
 10. **Fill out env file:**  
 Paste your Pinata JWT from the key that you made, the contract address, and the gateway URL.  
 
-(Picture here)  
+![completedenv](/docs/images/filledoutenv.png)   
 
 The gateway URL should start with "https://".  
 
