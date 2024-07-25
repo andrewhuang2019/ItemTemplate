@@ -63,6 +63,7 @@ Once that is finished, go to "Gateways" on the left and create a new gateway.
 Save the domain of the gateway for later use.  
 
 3. **Download the release**  
+
 The release is posted on the right side of the GitHub to get the required files to run the project.
 
 (Picture here)  
@@ -72,6 +73,7 @@ The release is posted on the right side of the GitHub to get the required files 
 Make sure that you have the dependencies above for the project.  
 
 5. **Create a .env file**  
+
 Create a file in the base directory of the project, named ".env". It should appear like so:  
 
 Inside of the .env file, copy and paste the code below:  
@@ -82,7 +84,8 @@ Inside of the .env file, copy and paste the code below:
 
 ![env](/docs/images/env.png)  
 
-6. **Paste private key**
+6. **Paste private key**  
+
 Inside of "hardhat.config.js, paste the private key where it says "SAIGON_PRIVATE_KEY".  
 
 ![hardhat](/docs/images/hardhatconfig.png)  
@@ -119,6 +122,7 @@ The terminal should return the address for the contract, so keep track of it.
 If you want to check out the contract that is deployedm, it can be seen in the [block explorer](https://saigon-app.roninchain.com/). You just need to copy and paste the contract address above to see it!  
 
 10. **Fill out env file:**  
+
 Paste your Pinata JWT from the key that you made, the contract address, and the gateway URL.  
 
 ![completedenv](/docs/images/filledoutenv.png)   
@@ -126,6 +130,7 @@ Paste your Pinata JWT from the key that you made, the contract address, and the 
 The gateway URL should start with "https://".  
 
 11. **Run app again**  
+
 With all the preliminary steps out of the way, you can run the app now!  
 
 There are 7 main parts to the app:  
