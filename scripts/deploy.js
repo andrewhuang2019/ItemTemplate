@@ -1,16 +1,25 @@
+// deploy.js
+
 const { ethers } = require("hardhat");
 
 async function main() {
-    const MyContract = await ethers.getContractFactory("MyContract")
-    const myContract = await MyContract.deploy();
-    await myContract.deployed();
+    const [owner] = await ethers.getSigners();
 
-    console.log("MyContract deployed to:", myContract.address);
+    const ItemNFT = await ethers.getContractFactory("ItemNFT")
+
+    const itemNFT = await ItemNFT.deploy(owner.address);
+    await itemNFT.deployed();
+
+    console.log("ItemNFTContract deployed to:", itemNFT.address);
+
 }
+
 
 main()
   .then(() => process.exit(0))
   .catch((error) => {
     console.error(error);
     process.exit(1);
-  });
+  })
+
+//export default deploy
