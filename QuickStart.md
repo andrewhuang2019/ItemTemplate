@@ -105,7 +105,7 @@ To obtain tokens for the faucet, visit the [Ronin faucet](https://faucet.roninch
 
 Paste your wallet in, and request for a **RON**.  
 
-(Picture)
+![get-token](/docs/images/gettoken.png)  
 
 9. **Deploy the contract**  
 In the terminal at the root folder, copy and paste the code below to deploy the contract.  
