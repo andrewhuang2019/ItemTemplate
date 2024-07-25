@@ -25,6 +25,7 @@ This should install all the dependencies. If it does not, then you can manually 
 ## Tutorial:  
 
 Note: all of the information I used are a part of a developer account. Do not share your private keys/personal information!  
+If any of the buttons do not work, you might need to click it a couple of times as there might be a wait on transactions on the testnet.  
 
 1. **Get Metamask**  
 
