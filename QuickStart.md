@@ -76,22 +76,17 @@ Create a file in the base directory of the project, named ".env". It should appe
 
 Inside of the .env file, copy and paste the code below:  
 
-`REACT_APP_PINATA_JWT=`
-`REACT_APP_CONTRACT_ADDRESS=`
-`REACT_APP_GATEWAY_URL=`
+`REACT_APP_PINATA_JWT=`  
+`REACT_APP_CONTRACT_ADDRESS=`  
+`REACT_APP_GATEWAY_URL=`  
 
-(Picture here)  
-
-Paste your Pinata JWT from the key that you made, as well as the gateway URL.  
-
-(Picture here)  
-
-The gateway URL should start with "https://".  
+![env](/docs/images/env.png)  
 
 6. **Paste private key**
 Inside of "hardhat.config.js, paste the private key where it says "SAIGON_PRIVATE_KEY".  
 
-(Picture here) 
+![hardhat](/docs/images/hardhatconfig.png)  
+![hardhat-inside](/docs/images/hardhatconfiginside.png)  
 
 7. **Run the app**  
 
@@ -100,7 +95,7 @@ Run the following code in the terminal below:
 
 This should bring up the react app with onto your local machine.  
 
-(Picture)
+![item-template](/docs/images/itemtemplate.png)  
 
 Click "Connect Wallet" to add the Saigon network to your Metamask networks. If it doesn't work, you can find the link to the network information [here](https://docs.roninchain.com/validators/setup/parameters/testnet).  
 
@@ -117,15 +112,20 @@ In the terminal at the root folder, copy and paste the code below to deploy the 
 
 `npx hardhat run --network saigon scripts/deploy.js`  
 
-The terminal should return the address for the contract, so copy and paste in into the .env file:  
+The terminal should return the address for the contract, so keep track of it.  
 
 (terminal picture)  
 
-(picture of env file)  
-
 If you want to check out the contract that is deployedm, it can be seen in the [block explorer](https://saigon-app.roninchain.com/). You just need to copy and paste the contract address above to see it!  
 
-10. **Run app again**  
+10. **Fill out env file:**  
+Paste your Pinata JWT from the key that you made, the contract address, and the gateway URL.  
+
+(Picture here)  
+
+The gateway URL should start with "https://".  
+
+11. **Run app again**  
 With all the preliminary steps out of the way, you can run the app now!  
 
 There are 7 main parts to the app:  
