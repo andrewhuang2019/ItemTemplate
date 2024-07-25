@@ -126,7 +126,11 @@ If you want to check out the contract that is deployedm, it can be seen in the [
 
 After the contract is deployed, head to the "artifacts/contracts/nfts/ItemNFT.json" and copy and paste the entire contents of "ItemNFT.json" into "src/abis/itemContractABI.json". Replace anything within "itemContractABI.json" with the contents of "ItemNFT.json".  
 
-(Pictures here)
+![item-abi](/docs/images/ItemNFT.png)  
+
+![item-abi-contents](/docs/images/ItemNFTcontents.png)  
+
+![item-contract-abi](/docs/images/itemContractABI.png)  
 
 10. **Fill out env file:**  
 
